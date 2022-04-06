@@ -1,0 +1,44 @@
+.container {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.register {
+  text-align: center;
+}
+.container,
+.login,
+.campos,
+.register-external,
+.text-register {
+  display: flex;
+}
+.login,
+.campos,
+.text-register {
+  flex-direction: column;
+  margin: 0.3em 0 0.3em 0;
+}
+.campos * {
+  margin: 0.5em;
+}
+.login {
+  border-radius: 6px;
+  padding: 2em;
+  background: #222;
+  color: #fff;
+}
+.register-external {
+  justify-content: space-around;
+}
+.opciones-registro a {
+  margin: 0.2em;
+  text-decoration: none;
+  color: #fff;
+}
+.opciones-registro .focus {
+  color: blue;
+  text-decoration: underline;
+}
