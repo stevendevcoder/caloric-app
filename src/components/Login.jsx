@@ -1,5 +1,6 @@
 import React from "react";
-import "../css/login.css";
+import "../styles/Login.scss";
+
 export default function Login() {
   function changeLogin(e) {
     e.preventDefault();

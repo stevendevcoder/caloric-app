@@ -1,0 +1,48 @@
+nav {
+  display: flex;
+  position: sticky;
+  flex-wrap: wrap;
+  padding: 20px 50px;
+  top: 0;
+  width: 100vw;
+  min-height: 70px;
+  background: #3a33a0;
+  align-items: center;
+  gap: 3rem;
+  a {
+    color: rgb(187, 187, 187);
+    &:hover {
+      color: rgb(255, 255, 255);
+    }
+  }
+}
+
+nav h1 {
+  text-transform: uppercase;
+  color: white;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  flex-wrap: wrap;
+  gap: 35px;
+  justify-content: center;
+  align-items: center;
+
+  li {
+    font-size: 18px;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 850px) {
+  nav {
+    text-align: center;
+    justify-content: center;
+    gap: 1rem;
+    h1 {
+      width: 100%;
+    }
+  }
+}
