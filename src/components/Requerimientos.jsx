@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Requerimientos = () => {
+function Requerimientos() {
 	return <div>Requerimientos</div>;
-};
+}
 
 export default Requerimientos;

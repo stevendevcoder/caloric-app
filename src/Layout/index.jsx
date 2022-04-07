@@ -1,17 +1,18 @@
-import Header from './Header';
 import React from 'react';
 import PropTypes from 'prop-types';
-const Layout = ({ children }) => {
+import Header from './Header';
+
+function Layout({ children }) {
 	return (
 		<div>
 			<Header />
 			{children}
 		</div>
 	);
-};
+}
 
 export default Layout;
 
 Layout.propTypes = {
-	children: PropTypes.node
+	children: PropTypes.node.isRequired,
 };

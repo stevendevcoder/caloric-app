@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Macronutrientes = () => {
+function Macronutrientes() {
 	return <div>Macronutrientes</div>;
-};
+}
 
 export default Macronutrientes;
