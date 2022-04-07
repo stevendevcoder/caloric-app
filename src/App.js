@@ -1,12 +1,13 @@
 import React from 'react';
 import './styles/App.css';
+import { Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
 import Layout from './Layout';
-import { Routes, Route } from 'react-router-dom';
 import Requerimientos from './components/Requerimientos';
 import Comidas from './components/Comidas';
 import Macronutrientes from './components/Macronutrientes';
 import Menu from './components/Menu';
+
 function App() {
 	return (
 		<Layout>
