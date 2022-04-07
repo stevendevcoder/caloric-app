@@ -7,7 +7,7 @@
         "@testing-library/react": "^12.1.4",
         "@testing-library/user-event": "^13.5.0",
         "eslint": "^8.12.0",
-        "eslint-config-airbnb": "^19.0.4",
+       
         "eslint-plugin-react": "^7.29.4",
         "prettier": "^2.6.2",
         "prop-types": "^15.8.1",
@@ -23,7 +23,7 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "lint": "react-scripts eslint"
+        "lint": "npx eslint "
     },
     "eslintConfig": {
         "extends": [
@@ -45,7 +45,6 @@
     },
     "devDependencies": {
         "babel-eslint": "^10.1.0",
-        "eslint-plugin-import": "^2.26.0",
-        "eslint-plugin-jsx-a11y": "^6.5.1"
+        "eslint-plugin-import": "^2.26.0"
     }
 }
