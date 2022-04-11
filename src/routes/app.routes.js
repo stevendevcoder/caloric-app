@@ -6,7 +6,8 @@ import Requerimientos from 'pages/Requerimientos';
 import Comidas from 'pages/Comidas';
 import Macronutrientes from 'pages/Macronutrientes';
 import Menu from 'pages/Menu';
-import { HOME, HOME_FOOD, HOME_MACRO, HOME_MENU, HOME_REQUERIMENTS } from 'constants/route.constants';
+import Settings from 'pages/Settings';
+import { HOME, HOME_FOOD, HOME_MACRO, HOME_MENU, HOME_REQUERIMENTS, HOME_SETTINGS } from 'constants/route.constants';
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 				<Route element={<Comidas />} path={HOME_FOOD} />
 				<Route element={<Macronutrientes />} path={HOME_MACRO} />
 				<Route element={<Menu />} path={HOME_MENU} />
+				<Route element={<Settings />} path={HOME_SETTINGS} />
 			</Routes>
 		</Layout>
 	);
