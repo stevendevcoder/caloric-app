@@ -1,32 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Input.scss';
+import PropTypes from 'prop-types';
 
-// eslint-disable-next-line react/prop-types
-export default function Input({error,messageError,tipo}) {
-	let button='';
-	const addColorError=(error)=>{
-		if(error){
-			return 'error';
-		}
-		
-	};
-	if(tipo==='password'){
-		button='password';
-	}
-	else{
-		button='';
-	}
+export default function Input({messageError,type, label}) {
+	const [showPassword, setShowPassword] = useState(false);
+	const color = messageError.length ? 'error' : '';
+	
 
 	return (
-		<>
+		<label>
+			{label}
 			<div className='input'>
-
-
-				<input  className={addColorError(error)} type={tipo} /><button className={button}>X</button>
+				<input  className={color} type={showPassword ? 'text' : type} />
+				{type === 'password' && <button onClick={() => setShowPassword(!showPassword)}>{showPassword ? 'hidden': 'show'}</button>}
 			</div>
-			<div className='hidden'>{messageError}</div>
-		</>
+			{messageError.length > 0 && <div>{messageError}</div>}
+		</label>
    
 		
 	);
 }
+Input.defaultProps = {
+	type: 'text', 
+	messageError: '', 
+};
+
+Input.propTypes = {
+	messageError: PropTypes.string, 
+	type: PropTypes.string, 
+	label: PropTypes.string
+};
