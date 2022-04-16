@@ -7,52 +7,52 @@ function Header() {
 
 	const openMenuToggle = () => {
 		setMenu(!menu);
-	}
+	};
 
 	return (
 		<nav>
-			<ul class="links">
+			<ul className="links">
 				<li>
 					<Link to="/comidas">
 						<span className='restaurant'></span>
 					</Link>
-					<div class='description'>Comidas</div>
+					<div className='description'>Comidas</div>
 				</li>
 				<li>	
 					<Link to="/requerimientos">
 						<span className='analytics'></span>
 					</Link>
-					<div class='description'>Requerimientos</div>
+					<div className='description'>Requerimientos</div>
 				</li>
 				<li>
 					<Link to="/macronutrientes">
 						<span className='weight-control'></span>
 					</Link>
-					<div class='description'>Control de peso</div>
+					<div className='description'>Control de peso</div>
 				</li>
 				<li>
 					<Link to="/">
 						<h1>Caloric App</h1>
 					</Link>
 				</li>
-				<li class="menu" onClick={openMenuToggle}>
+				<li className="menu" onClick={openMenuToggle}>
 					<span className='menu-logo'></span>
 				</li>
 				<li>
 					<Link to="/menu">
 						<span className='home'></span>
 					</Link>
-					<div class='description'>Home</div>
+					<div className='description'>Home</div>
 				</li>
 				<li>
 					<Link to="/settings">
 						<span className='settings'></span>
 					</Link>
-					<div class='description'>Settings</div>
+					<div className='description'>Settings</div>
 				</li>
 				<li>
 					<span className='user'></span>
-					<div class='description'>User</div>
+					<div className='description'>User</div>
 				</li>
 			</ul>
 

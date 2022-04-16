@@ -1,50 +1,43 @@
 import React from 'react';
 import 'styles/pages/Login.scss';
-
-export default function Login() {
-	function changeLogin(e) {
-		e.preventDefault();
-		if (!e.target.classList.contains('focus')) {
-			e.target.classList.add('focus');
-			if (e.target.nextElementSibling) {
-				e.target.nextElementSibling.classList.remove('focus');
-			} else {
-				e.target.previousElementSibling.classList.remove('focus');
-			}
-		}
-
-		console.log(e.target.nextElementSibling);
-	}
-	return (
+import Input from 'components/Input';
+import Or from 'components/Or';
+import { FacebookLoginButton,GoogleLoginButton } from 
+	'react-social-login-buttons';
+export default function Login(/*{messageAccount,mensajDeDireccionamiento}*/) {
+	return(
 		<div className="container">
+    
+			<div className='image-login'>
+				<img src="https://picsum.photos/700/400?random" alt="" />
+			</div>
 			<div className="login">
-				<div className="opciones-registro">
-					<a href="#" className="login-text" onClick={changeLogin}>
-            Iniciar sesion
-					</a>
-					<a href="# " className="focus register" onClick={changeLogin}>
-            Registrarse
-					</a>
+				<div className='container-login'>
+
+					<h1 className='message'>Account register</h1>
+					<p>If you are already a member you can login with your email address and password.</p>
+					<Input type='text'  label='Usuario' />
+					<Input  label='correo' type="email"/>
+					<Input type='password' label='constraseña'/>
+					<Input type='password' label='contraseña'/>
+					<div className="checkbox">	<input id="checkbox" type='checkbox' value='Remember me'/>
+						<label htmlFor="checkbox">Remember me </label></div>
+					<p>Dont have an account ? </p>
+					<Or></Or>
+					<div className="login-or-register">
+						<FacebookLoginButton onClick={() => alert('Hello')} />
+						<GoogleLoginButton onClick={() => alert('Hello')} />					</div>
+
 				</div>
-				<form className="campos" action="POST">
-					<label htmlFor="">Usuario</label>
-					<input type="text" />
-					<label htmlFor="">Correo</label>
-					<input type="text" />
-					<label htmlFor="">Contraseña</label>
-					<input type="text" />
-					<label htmlFor="">Repetir contraseña</label>
-					<input type="text" />
-				</form>
-				<div className="text-register">
-					<button>Registrarse</button>
-					<p className="register">O Registrate con</p>
-				</div>
-				<div className="register-external">
-					<button>Google</button>
-					<button>Facebook</button>
-				</div>
+			
 			</div>
 		</div>
 	);
 }
+/*Login.defaultProps={
+	messageAccount:'Hola',
+};
+Login.protoTypes={
+	messageAccount:PropTypes.string,
+};
+*/

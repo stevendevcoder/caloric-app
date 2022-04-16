@@ -1,3 +1,24 @@
-.input{
-display: flex;}
 
+label{
+ display: block;
+ margin: 1em;
+}
+
+.error{
+ border-color: rgba(255, 0, 0, 0.485);
+
+}
+.input{
+ 
+ display:flex;
+ align-items: center;
+ width: 100%;
+}
+button{
+width: 40px;
+height: 5vh;
+border: none;
+background-color: #1C4430;
+border-radius:5px;
+  color: #fff;
+}

@@ -1,0 +1,13 @@
+.or{
+ display: grid;
+ grid-template-columns: 1fr 0.2fr 1fr;
+.before,.after{
+height: 0.2vh;
+width: 100%;
+ background-color: #000;
+}
+}
+span{
+ display: block;
+ text-align: center;
+}
