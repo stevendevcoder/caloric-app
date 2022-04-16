@@ -40,3 +40,19 @@
   color: blue;
   text-decoration: underline;
 }
+
+.containerUsers {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
+  height: auto;
+
+  .user-card {
+    width: 100px;
+    background-color: #222;
+    color: #fff;
+  }
+}
+

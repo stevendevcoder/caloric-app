@@ -1,31 +1,49 @@
-import { query } from 'firebase/database';
-import { collection, doc, setDoc } from 'firebase/firestore';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/authContext';
 import 'styles/pages/Login.scss';
-import { db } from '../firebaseConfig';
+
+//Firebase
+import {collection, getDocs, getDoc, query, doc,  addDoc, deleteDoc, updateDoc} from 'firebase/firestore';
+import { db } from '../firebase/firebaseConfig';
 
 export default function Login() {
-	const [name, setName] = useState('')
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+	const [user, setUser] = useState({
+		name: '',
+		email: '',
+		password: ''
+	})
+	const [mode, setMode] = useState("login");
 
-	const [user, setUser] = useState({})
+	const { login } = useAuth();
+	const { signup } = useAuth();
+	const navigate = useNavigate();
+	const [error, setError] = useState();
 
-	async function submit(e)  {
+	const handleChange = ({target : {name, value}}) => {
+		setUser({...user, [name]: value})
+	} 
+
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const usersRef = collection(db, "users");
+		try {
+			setError('');
+			await signup(user.email, user.password);
+			navigate('/menu');
 
-		await setDoc(doc(db, "users", name), {name,email, password});
-		
-		/*
-		const q = query(collection(db, 'users'));
-		const unsub = onSnapshot(q, (querySnapshot) => {
-			console.log("data", querySnapshot.docs.map(d => doc.data([email, password, name])))
-		})*/
-
-		console.log("nuevo user agregado");
-	}  
+		} catch (error){
+			let msgError = "";
+			if(error.code === "auth/internal-error"){
+				msgError = "Email invalido";
+			} else if(error.code === "auth/weak-password"){
+				msgError = "Contraseña insegura";
+			} else if(error.code === "auth/email-alredy-in-use"){
+				msgError = "El email ya está en uso"
+			}
+			setError(msgError)
+		}
+	}
 
 	function changeLogin(e) {
 		e.preventDefault();
@@ -37,32 +55,34 @@ export default function Login() {
 				e.target.previousElementSibling.classList.remove('focus');
 			}
 		}
-
-		console.log(e.target.nextElementSibling);
+		
+		console.log(e.target.name);
+		setMode(e.target.name);
 	}
+
 	return (
 		<div className="container">
 			<div className="login">
 				<div className="opciones-registro">
-					<a href="#" className="login-text" onClick={changeLogin}>
+					<a href="#" className="login-text" name="login" onClick={changeLogin}>
             Iniciar sesion
 					</a>
-					<a href="# " className="focus register" onClick={changeLogin}>
+					<a href="# " className="focus register" name="register" onClick={changeLogin}>
             Registrarse
 					</a>
 				</div>
-				<form className="campos" action="POST">
+				<form className="campos" onSubmit={handleSubmit}>
 					<label htmlFor="">Usuario</label>
-					<input type="text" onChange={(e) => setName(e.target.value)} />
+					<input type="text" onChange={handleChange} />
 					<label htmlFor="">Correo</label>
-					<input type="text" onChange={(e) => setEmail(e.target.value)} />
+					<input type="email" name="email" onChange={handleChange} />
 					<label htmlFor="">Contraseña</label>
-					<input type="text" onChange={(e) => setPassword(e.target.value)} />
+					<input type="password" name="password" onChange={handleChange} />
 					<label htmlFor="">Repetir contraseña</label>
 					<input type="text"/>
 				</form>
 				<div className="text-register">
-					<button onClick={submit}>Registrarse</button>
+					<input type="submit" onClick={handleSubmit} value="Registrarse" />
 					<p className="register">O Registrate con</p>
 				</div>
 				<div className="register-external">
@@ -71,17 +91,8 @@ export default function Login() {
 				</div>
 			</div>
 
-			<UsersList />
+			{ error && <p>{error}</p>}
 		</div>
 	);
 }
 
-const UsersList = (props) => {
-	return (
-		<div className="containerUsers">
-			<div className='User'>
-				{}
-			</div>
-		</div>
-	)
-}
