@@ -20,10 +20,11 @@
  
 }
 .container-login{
-  padding: 1em;
+  padding: 0px 60px;
+
 
 }
-.image-login{display: none;
+.image-login{
  background: linear-gradient(0deg, #1C4430, #1C4430);
  width: 100%;
  height: 100%;
@@ -40,12 +41,8 @@ input{
 .checkbox,.login,.login-or-register{
  
  display: flex;
- flex-direction: column;
  
 }
-
-
-
 .login-or-register{
  margin: 2em;
 }
@@ -55,17 +52,29 @@ input{
  background-position:center;
  background-repeat: no-repeat;
  }
+.message {
+ font-size: 40px;
+ text-align: center;
+ margin: .5em;
+}
 
+.login_inputs {
+ display: flex;
+ flex-direction: column;
+ justify-items: center;
+}
 
 @media (max-width: 760px){
-.container{
-  display: flex;
+.image-login {display: none;}
+ .container{
+  display: block;
   width: 100vw;
   height: 100vh;
   top: 50%;
   .container-login{
 
-  width: inherit;
-  }
+    width: inherit;
+    }
   }
 }
+

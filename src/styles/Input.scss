@@ -1,12 +1,17 @@
 
 label{
  display: block;
+ text-transform:capitalize;
  margin: 1em;
 }
 
 .error{
  border-color: rgba(255, 0, 0, 0.485);
 
+}
+p{
+ margin: 2em;
+ text-align: center;
 }
 .input{
  width: 100%;
@@ -17,8 +22,8 @@ label{
  background-color: #ffffff;
  border-radius: 6px;
  border: .5px solid #8692A6;
-
-
+ margin: 1.2em 0;
+ 
  input{
   width: 100%;
   margin: 0px;
@@ -38,10 +43,14 @@ label{
 }
 }
 button{
-width: 40px;
-height: 5vh;
+ display: flex;
+ justify-content: center;
+ width: 180px;
+ padding: 10px;
+font-size: 20px;
 border: none;
 background-color: #1C4430;
 border-radius:5px;
+margin: 10px auto;
   color: #fff;
 }

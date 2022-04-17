@@ -7,7 +7,7 @@ import Comidas from 'pages/Comidas';
 import Macronutrientes from 'pages/Macronutrientes';
 import Menu from 'pages/Menu';
 import Settings from 'pages/Settings';
-import { AUTH, HOME, HOME_FOOD, HOME_MACRO, HOME_MENU, HOME_REQUERIMENTS, HOME_SETTINGS } from 'constants/route.constants';
+import { AUTH, HOME_FOOD, HOME_MACRO, HOME_MENU, HOME_REQUERIMENTS, HOME_SETTINGS } from 'constants/route.constants';
 
 function App() {
 	return (

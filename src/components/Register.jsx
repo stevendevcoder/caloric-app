@@ -10,14 +10,14 @@ export default function Register({setLogin}) {
 		<div className="login">
 			<div className='container-login'>
 
-				<h1 className='message'>Account register</h1>
-				<p>If you are already a member you can login with your email address and password.</p>
+				<h1 className='message'>Registrarse</h1>
 				<Input type='text'  label='Usuario' />
 				<Input  label='correo' type="email"/>
 				<Input type='password' label='constraseña'/>
 				<Input type='password' label='contraseña'/>
 				<div className="checkbox">	<input id="checkbox" type='checkbox' value='Remember me'/>
 					<label htmlFor="checkbox">Remember me </label></div>
+				<button className=''>Crear cuenta</button>
 				<p onClick={()=>setLogin(true)}>Dont have an account ? </p>
 				<Or></Or>
 				<div className="login-or-register">

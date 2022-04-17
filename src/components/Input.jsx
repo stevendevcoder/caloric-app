@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/Input.scss';
 import PropTypes from 'prop-types';
-import { AiFillEyeInvisible } from 'react-icons/ai'
-import { AiFillEye } from 'react-icons/ai'
+import { AiFillEyeInvisible } from 'react-icons/ai';
+import { AiFillEye } from 'react-icons/ai';
 
 export default function Input({messageError,type, label}) {
 	const [showPassword, setShowPassword] = useState(false);
@@ -16,15 +16,15 @@ export default function Input({messageError,type, label}) {
 				{ type === 'password' && 
 								(showPassword ? 
 									<AiFillEye 
-									onClick={() => setShowPassword(false)} 
-									className='icon-password' /> 
+										onClick={() => setShowPassword(false)} 
+										className='icon-password' /> 
 								
 									:
 		
 									<AiFillEyeInvisible 
 										onClick={() => setShowPassword(true)} 
 										className='icon-password'/>
-							)
+								)
 				}
 			</div>
 			{messageError.length > 0 && <div>{messageError}</div>}
