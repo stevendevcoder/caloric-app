@@ -7,7 +7,7 @@
 .container{
  width: 100vw;
  height: 100vh;
-display: grid;
+display: flex;
 grid-template-columns: 1fr 1fr;
 justify-content: center;
 color: #000;
@@ -44,6 +44,7 @@ input{
 .checkbox,.login,.login-or-register{
  
  display: flex;
+ flex-direction: column;
  
 }
 
@@ -52,6 +53,12 @@ input{
 .login-or-register{
  margin: 2em;
 }
+.image-login{
+ background-image: url("../../assets/images/image-login.png");
+ background-size: cover;
+ background-position:center;
+ background-repeat: no-repeat;
+ }
 
 
 
@@ -60,8 +67,7 @@ input{
 
 
 
-
-@media (min-width: 760px){
+@media (min-width: 900px){
 .image-login{
  display: flex;
 
