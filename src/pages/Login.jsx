@@ -3,9 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/authContext';
 import 'styles/pages/Login.scss';
 
+import Register from '../components/Register';
+import Sign from '../components/Sign';
+
 //Firebase
 import {collection, getDocs, getDoc, query, doc,  addDoc, deleteDoc, updateDoc} from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
+
+/*
+		-CREAR FUNCIONES PARA CADA MODO E IMPLEMENTARLAS
+		EN EL HANDLESUBMIT()
+
+		-RESTRINGIR EL ACCESSO A RUTAS SIN ESTAR LOGUEADO
+*/
 
 export default function Login() {
 	const [user, setUser] = useState({
@@ -13,10 +23,10 @@ export default function Login() {
 		email: '',
 		password: ''
 	})
-	const [mode, setMode] = useState("login");
+	const [mode, setMode] = useState("signup");
 
 	const { login } = useAuth();
-	const { signup } = useAuth();
+	const { register } = useAuth();
 	const navigate = useNavigate();
 	const [error, setError] = useState();
 
@@ -27,9 +37,28 @@ export default function Login() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
+		if(mode === "signup"){
+			loginUser();
+		} else if(mode === "register"){
+			createNewUser();
+		}
+
+	}
+
+	const loginUser = async () => {
 		try {
 			setError('');
-			await signup(user.email, user.password);
+			await login(user.email, user.password);
+			navigate('/menu');
+		} catch (error){
+			console.log(error.code)
+		}
+	}
+
+	const createNewUser = async e => {
+		try {
+			setError('');
+			await register(user.email, user.password);
 			navigate('/menu');
 
 		} catch (error){
@@ -64,31 +93,24 @@ export default function Login() {
 		<div className="container">
 			<div className="login">
 				<div className="opciones-registro">
-					<a href="#" className="login-text" name="login" onClick={changeLogin}>
+					<a href="#" className="login-text focus" name="signup" onClick={changeLogin}>
             Iniciar sesion
 					</a>
-					<a href="# " className="focus register" name="register" onClick={changeLogin}>
+					<a href="# " className="register" name="register" onClick={changeLogin}>
             Registrarse
 					</a>
 				</div>
-				<form className="campos" onSubmit={handleSubmit}>
-					<label htmlFor="">Usuario</label>
-					<input type="text" onChange={handleChange} />
-					<label htmlFor="">Correo</label>
-					<input type="email" name="email" onChange={handleChange} />
-					<label htmlFor="">Contraseña</label>
-					<input type="password" name="password" onChange={handleChange} />
-					<label htmlFor="">Repetir contraseña</label>
-					<input type="text"/>
-				</form>
-				<div className="text-register">
-					<input type="submit" onClick={handleSubmit} value="Registrarse" />
-					<p className="register">O Registrate con</p>
-				</div>
-				<div className="register-external">
-					<button>Google</button>
-					<button>Facebook</button>
-				</div>
+				
+				{ mode === 'signup' ? 
+						<Sign 
+							handleChange={handleChange}
+							handleSubmit={handleSubmit}/> 
+						: 
+						<Register 
+							handleChange={handleChange}
+							handleSubmit={handleSubmit}/>
+				}
+
 			</div>
 
 			{ error && <p>{error}</p>}
