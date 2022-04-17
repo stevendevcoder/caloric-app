@@ -9,13 +9,33 @@ label{
 
 }
 .input{
- 
+ width: 100%;
+ max-height: 64px;
+ padding: 13px 17px 13px 17px;
  display:flex;
  align-items: center;
+ background-color: #ffffff;
+ border-radius: 6px;
+ border: .5px solid #8692A6;
+
+
  input{
   width: 100%;
-
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-weight: bolder;
  }
+.icon-password {
+  max-width: 20px;
+  font-size: 20px;
+  color: black;
+  &:hover {
+    cursor: pointer;
+  }
+}
 }
 button{
 width: 40px;
