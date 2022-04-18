@@ -7,13 +7,13 @@ import Comidas from 'pages/Comidas';
 import Macronutrientes from 'pages/Macronutrientes';
 import Menu from 'pages/Menu';
 import Settings from 'pages/Settings';
-import { HOME, HOME_FOOD, HOME_MACRO, HOME_MENU, HOME_REQUERIMENTS, HOME_SETTINGS } from 'constants/route.constants';
+import { AUTH, HOME_FOOD, HOME_MACRO, HOME_MENU, HOME_REQUERIMENTS, HOME_SETTINGS } from 'constants/route.constants';
 
 function App() {
 	return (
 		<Layout>
 			<Routes>
-				<Route element={<Login />} path={HOME} />
+				<Route element={<Login />} path={AUTH} />
 				<Route element={<Requerimientos />} path={HOME_REQUERIMENTS} />
 				<Route element={<Comidas />} path={HOME_FOOD} />
 				<Route element={<Macronutrientes />} path={HOME_MACRO} />
