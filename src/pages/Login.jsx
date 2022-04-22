@@ -49,7 +49,7 @@ export default function Login() {
 		try {
 			setError('');
 			await login(user.email, user.password);
-			navigate('/menu');
+			navigate('/dashboard');
 		} catch (error){
 			console.log(error.code)
 		}
@@ -110,10 +110,8 @@ export default function Login() {
 							handleChange={handleChange}
 							handleSubmit={handleSubmit}/>
 				}
-
+				{ error && <p style={{color: "white"}}>{error}</p>}
 			</div>
-
-			{ error && <p>{error}</p>}
 		</div>
 	);
 }
