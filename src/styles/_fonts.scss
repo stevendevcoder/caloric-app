@@ -1,10 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
-@use '_colors.scss';
 
 /* DECLARACION DE FUENTES */
 $font-family: 'Roboto Condensed', sans-serif;
 
-@mixin h2-fonts {
+@mixin h1-fonts {
   font-family: $font-family;
   font-style: normal;
   font-weight: bolder;

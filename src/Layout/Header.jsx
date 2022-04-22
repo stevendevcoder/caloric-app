@@ -7,11 +7,11 @@ function Header() {
 
 	const openMenuToggle = () => {
 		setMenu(!menu);
-	}
+	};
 
 	return (
 		<nav>
-			<ul class="links">
+			<ul className="links">
 				<li>
 					<Link to="/comidas">
 						<span className='restaurant'></span>

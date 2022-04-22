@@ -4,18 +4,11 @@ import { useAuth } from '../context/authContext';
 import 'styles/pages/Login.scss';
 
 import Register from '../components/Register';
-import Sign from '../components/Sign';
+import SignIn from '../components/SignIn';
 
 //Firebase
 import {collection, getDocs, getDoc, query, doc,  addDoc, deleteDoc, updateDoc} from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
-
-/*
-		-CREAR FUNCIONES PARA CADA MODO E IMPLEMENTARLAS
-		EN EL HANDLESUBMIT()
-
-		-RESTRINGIR EL ACCESSO A RUTAS SIN ESTAR LOGUEADO
-*/
 
 export default function Login() {
 	const [user, setUser] = useState({
@@ -23,43 +16,31 @@ export default function Login() {
 		email: '',
 		password: ''
 	})
-	const [mode, setMode] = useState("signup");
+	const [mode, setMode] = useState(true);
 
 	const { login } = useAuth();
 	const { register } = useAuth();
 	const navigate = useNavigate();
-	const [error, setError] = useState();
+	const [error, setError] = useState('');
 
-	const handleChange = ({target : {name, value}}) => {
-		setUser({...user, [name]: value})
-	} 
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
 
-		if(mode === "signup"){
-			loginUser();
-		} else if(mode === "register"){
-			createNewUser();
-		}
-
-	}
-
-	const loginUser = async () => {
+	const loginUser = async (user) => {
 		try {
 			setError('');
 			await login(user.email, user.password);
 			navigate('/dashboard');
 		} catch (error){
+			setError(error.code)
 			console.log(error.code)
 		}
 	}
 
-	const createNewUser = async e => {
+	const createNewUser = async (newUser) => {
 		try {
 			setError('');
-			await register(user.email, user.password);
-			navigate('/menu');
+			await register(newUser.email, newUser.password);
+			navigate('/dashdoard');
 
 		} catch (error){
 			let msgError = "";
@@ -74,44 +55,22 @@ export default function Login() {
 		}
 	}
 
-	function changeLogin(e) {
-		e.preventDefault();
-		if (!e.target.classList.contains('focus')) {
-			e.target.classList.add('focus');
-			if (e.target.nextElementSibling) {
-				e.target.nextElementSibling.classList.remove('focus');
-			} else {
-				e.target.previousElementSibling.classList.remove('focus');
-			}
-		}
-		
-		console.log(e.target.name);
-		setMode(e.target.name);
-	}
-
 	return (
 		<div className="container">
-			<div className="login">
-				<div className="opciones-registro">
-					<a href="#" className="login-text focus" name="signup" onClick={changeLogin}>
-            Iniciar sesion
-					</a>
-					<a href="# " className="register" name="register" onClick={changeLogin}>
-            Registrarse
-					</a>
-				</div>
+
+				<div className='image-login'></div>
 				
-				{ mode === 'signup' ? 
-						<Sign 
-							handleChange={handleChange}
-							handleSubmit={handleSubmit}/> 
+				{ mode ? 
+						<SignIn 
+							error={error}
+							loginUser={loginUser}
+							setMode={setMode}/> 
 						: 
 						<Register 
-							handleChange={handleChange}
-							handleSubmit={handleSubmit}/>
+							error={error}
+							createNewUser={createNewUser}
+							setMode={setMode}/>
 				}
-				{ error && <p style={{color: "white"}}>{error}</p>}
-			</div>
 		</div>
 	);
 }
