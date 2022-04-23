@@ -45,5 +45,6 @@ Input.defaultProps = {
 Input.propTypes = {
 	error: PropTypes.string, 
 	type: PropTypes.string, 
-	label: PropTypes.string
+	label: PropTypes.string,
+	handleChange: PropTypes.func
 };

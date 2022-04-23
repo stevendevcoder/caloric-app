@@ -1,4 +1,4 @@
-import React, {useStete} from 'react';
+import React, {useState} from 'react';
 import Input from 'components/Input';
 import Or from 'components/Or';
 import { FacebookLoginButton,GoogleLoginButton } from 
@@ -68,6 +68,9 @@ export default function Register({error, createNewUser, setMode}) {
 			</div>
 		</div>  );
 }
+
 Register.propTypes = {
-	setLogin:PropTypes.setLogin
+	error: PropTypes.string, 
+	createNewUser: PropTypes.func,
+	setMode: PropTypes.func
 };

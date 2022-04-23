@@ -1,12 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Input from 'components/Input';
 import Or from 'components/Or';
 import { FacebookLoginButton,GoogleLoginButton } from 
 	'react-social-login-buttons';
 import PropTypes from 'prop-types';
 
-
-export default function SingIn({ error, loginUser, setMode }) {
+export default function SignIn({ error, loginUser, setMode }) {
 	const [user, setUser] = useState({
 		email: '',
 		password: ''
@@ -27,7 +26,7 @@ export default function SingIn({ error, loginUser, setMode }) {
 				<h1 className='message'>Inciar sesion</h1>
 				
 				<Input 
-					type='text' 
+					type='email' 
 					error={error}
 					handleChange={handleChange}  
 					label='Usuario' 
@@ -41,7 +40,7 @@ export default function SingIn({ error, loginUser, setMode }) {
 
 				<div className="checkbox">	<input id="checkbox" type='checkbox' value='Remember me'/>
 					<label htmlFor="checkbox">Remember me </label></div>
-				<button className=''>Continuar</button>
+				<button onClick={handleSubmit} className=''>Continuar</button>
 					
 				<p onClick={()=>setMode(false)}>Registrarse</p>
 				<Or></Or>
@@ -54,6 +53,9 @@ export default function SingIn({ error, loginUser, setMode }) {
 		</div>
 	);
 }
-SingIn.propTypes = {
-	setLogin:PropTypes.setLogin
+
+SignIn.propTypes = {
+	error: PropTypes.string, 
+	loginUser: PropTypes.func,
+	setMode: PropTypes.func
 };

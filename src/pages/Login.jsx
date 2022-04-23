@@ -11,11 +11,6 @@ import {collection, getDocs, getDoc, query, doc,  addDoc, deleteDoc, updateDoc} 
 import { db } from '../firebase/firebaseConfig';
 
 export default function Login() {
-	const [user, setUser] = useState({
-		name: '',
-		email: '',
-		password: ''
-	})
 	const [mode, setMode] = useState(true);
 
 	const { login } = useAuth();
@@ -58,19 +53,19 @@ export default function Login() {
 	return (
 		<div className="container">
 
-				<div className='image-login'></div>
+			<div className='image-login'></div>
 				
-				{ mode ? 
-						<SignIn 
-							error={error}
-							loginUser={loginUser}
-							setMode={setMode}/> 
-						: 
-						<Register 
-							error={error}
-							createNewUser={createNewUser}
-							setMode={setMode}/>
-				}
+			{ mode ? 
+					<SignIn 
+						error={error}
+						loginUser={loginUser}
+						setMode={setMode}/> 
+					: 
+					<Register 
+						error={error}
+						createNewUser={createNewUser}
+						setMode={setMode}/>
+			}
 		</div>
 	);
 }

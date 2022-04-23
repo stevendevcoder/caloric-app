@@ -1,5 +1,7 @@
+import React from 'react';
 import { useAuth } from 'context/authContext';
 import { Navigate } from 'react-router-dom'
+import PropTypes from 'prop-types';
 
 export function ProtectedRoute({children}) {
   const {user, loading} = useAuth();
@@ -10,3 +12,7 @@ export function ProtectedRoute({children}) {
 
   return <>{children}</>;
 }
+
+ProtectedRoute.propTypes = {
+	children: PropTypes.node.isRequired,
+};

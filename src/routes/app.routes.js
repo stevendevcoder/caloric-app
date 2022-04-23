@@ -23,8 +23,14 @@ function App() {
 					<Route element={
 						<ProtectedRoute>
 							<Dashboard />
+							hola
 						</ProtectedRoute>
 					} path={DASHBOARD} />
+					<Route element={
+						<ProtectedRoute>
+							<Menu/>
+						</ProtectedRoute>
+					} path={HOME}/>
 					<Route element={
 							<Login />
 					} path={AUTH}/>
