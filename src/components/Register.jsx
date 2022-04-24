@@ -3,6 +3,7 @@ import Input from 'components/Input';
 import Or from 'components/Or';
 import { FacebookLoginButton,GoogleLoginButton } from 
 	'react-social-login-buttons';
+	import { AiOutlineArrowLeft } from 'react-icons/ai'
 import PropTypes from 'prop-types';
 
 export default function Register({error, createNewUser, setMode}) {
@@ -23,40 +24,38 @@ export default function Register({error, createNewUser, setMode}) {
 
 	return (
 		<div className="login">
+			<div className='changeMode' onClick={()=>setMode(true)}>
+				<AiOutlineArrowLeft id='icon-left'/>
+				<p>Iniciar sesión</p>
+			</div>
 			<div className='container-login'>
 
 				<h1 className='message'>Registrarse</h1>
 
 				<Input 
+					name='name'
 					handleChange={handleChange}
 					type='text' 
 					label='Usuario' 
 				/>
 				<Input 
+					name='email'
 					handleChange={handleChange}
 					label='correo' 
 					type="email"
 				/>
 				<Input 
+					name='password'
 					handleChange={handleChange}
 					type='password' 
 					label='constraseña'
 				/>
-				<Input 
-					handleChange={handleChange}
-					type='password' 
-					label='Repetir Contraseña'
-				/>
 
-				<div className="checkbox">	<input id="checkbox" type='checkbox' value='Remember me'/>
-					<label htmlFor="checkbox">Remember me </label>
+				<div className="checkbox">	<input id="checkbox" type='checkbox' value='Recordarme'/>
+					<label htmlFor="checkbox">Recordarme</label>
 				</div>
 
 				<button onClick={handleSubmit}>Crear cuenta</button>
-
-				<p onClick={()=>setMode(true)}>
-					Iniciar sesión
-					</p>
 
 				<Or></Or>
 

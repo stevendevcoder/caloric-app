@@ -17,7 +17,7 @@ export default function Login() {
 	const { register } = useAuth();
 	const navigate = useNavigate();
 	const [error, setError] = useState('');
-
+	console.log(login);
 
 
 	const loginUser = async (user) => {

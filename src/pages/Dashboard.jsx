@@ -5,6 +5,8 @@ import { useAuth } from '../context/authContext'
 export default function Dashboard() {
 	const { user, logout } = useAuth();
 
+	console.log(user);
+
 	const handleLogout = async() => {
 		await logout();
 		console.log("Cerrando sesion")
