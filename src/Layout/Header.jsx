@@ -31,7 +31,7 @@ function Header() {
 					<div className='description'>Control de peso</div>
 				</li>
 				<li>
-					<Link to="/">
+					<Link to="/dashboard">
 						<h1>Caloric App</h1>
 					</Link>
 				</li>
@@ -39,7 +39,7 @@ function Header() {
 					<span className='menu-logo'></span>
 				</li>
 				<li>
-					<Link to="/menu">
+					<Link to="/dashboard">
 						<span className='home'></span>
 					</Link>
 					<div className='description'>Home</div>
