@@ -1,18 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-// import Header from './Header';
-
-function Layout({ children }) {
+import Sidebar from './Sidebar';
+import 'styles/layout/Index.scss';
+import { Outlet } from 'react-router-dom';
+function Layout() {
 	return (
-		<div>
-			{/*<Header />*/}
-			{children}
+		<div className='app__container'>
+			<Sidebar />
+			<Outlet/>
 		</div>
 	);
 }
 
 export default Layout;
 
-Layout.propTypes = {
-	children: PropTypes.node.isRequired,
-};

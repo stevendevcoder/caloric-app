@@ -1,173 +1,52 @@
-nav {
+@import '../colors';
+.sidebar{
+  width: 90px;
+  height: 100vh;
+  background: $white;
   display: flex;
-  position: sticky;
-  flex-wrap: wrap;
-  padding: 7px 50px;
-  top: 0;
-  width: 100vw;
-  min-height: 70px;
-  background: #1C402C;
-  box-shadow:  5px 5px 65px #343434;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 3rem;
-  a {
-    color: rgb(187, 187, 187);
-    &:hover {
-      color: rgb(255, 255, 255);
-    }
+  padding: 25px 0;
+  row-gap: 25px;
+  &__image{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
   }
-}
-
-nav h1 {
-  text-transform: uppercase;
-  color: white;
-}
-
-nav .menu-toggle {
-  display: fixed;
-  position: absolute;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-auto-rows: 100px;
-  width: 100vw;
-  height: auto;
-  padding-bottom: 20px;
-  background-color: #1C402C;
-  top: 74px;
-  left: -100%;
-
-  &.active{
-    transform: translate(100%, 0px);
+  
+  &__menu{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
-}
-
-nav ul {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  flex-wrap: wrap;
-  gap: 25px;
-  justify-content: space-around;
-  align-items: center;
-  align-self: flex-end;
-
-  .menu {
-    display: none;
-  }
-
-  li {
+  &__square{
     position: relative;
-    padding: 7px;
-    font-size: 18px;
-    text-align: center;
-    border-radius: 15px;
-    transition: all .5s;
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    border: 1px solid $gray;
+    background: $white;
+    color: gray;
+    margin: 10px 0;
+    transition: 0.2s ease-in-out;
+    overflow: hidden;
 
-    .description {
-      display: none;
+    &--name{
       position: absolute;
-      top: 70px;
-      left: 50%;
-      transform: translate(-50%, 0);
+      font-size: 14px;
       width: fit-content;
-      height: auto;
-      border-radius: 15px;
-      color: #fff;
-      word-wrap: normal;
-
-      background-color: #151917;
-      padding: 15px;
-      transition: display .4s;
+      left: 149%;
+      background: $verde;
+      padding: 5px 8px;
+      border-radius: 5px;
+      color: $amarillo;
     }
-
-    &:hover {
-      background: #4A5FD9;
-      cursor: pointer;
-      transition: all .5s;
-
-      .description {
-        display: block;
-        box-shadow:  10px 10px 27px #555555e7,
-             -10px -10px 27px #55555500;
-        transition: all .4s;
-      }
-
-      span {
-        transform: scale(1.2);
-        transition: all .4s;
-      }
-    }
-
-    span {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-    .home {
-      background-image: url('../../assets/icons/home.svg');
-    }
-    .analytics {
-      background-image: url('../../assets/icons/analytics.svg');
-    }
-    .weight-control {
-      background-image: url('../../assets/icons/weight-control.svg');
-    }
-    .restaurant {
-      background-image: url('../../assets/icons/restaurant-white.svg');
-    }
-    .settings {
-      background-image: url('../../assets/icons/settings-white.svg');
-    }
-    .user {
-      background-image: url('../../assets/icons/person_white.svg');
-    }
-    .menu-logo {
-      background-image: url('../../assets/icons/menu-white.svg');
+    &:hover{
+      background: $verde;
+      color: $amarillo;
+      overflow: visible;
     }
   }
-}
-
-/* BREAKPOINTS */
-
-@media screen and (max-width: 850px) {
-  nav {
-    text-align: center;
-    justify-content: center;
-    gap: 1rem;
-    h1 {
-      width: 100%;
-    }
-  }
-}
-
-@media (max-width: 760px){
-  nav .links li:nth-child(-n+3){ //Primeros 3 li
-      display: none;
-  }
-}
-
-@media (max-width: 523px){
-  nav .links {
-    justify-content: center;
-    flex-wrap: nowrap;  
-  }
-
-  nav .links li:nth-last-child(-n+3){
-    display: none;
-  }
-
-  nav .links .menu {
-    display: block;
-  }
-}
-
-@media (max-width: 310px){
- nav .menu-toggle{
-   grid-template-columns: 1fr 1fr;
- }
 }
