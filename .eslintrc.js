@@ -19,14 +19,9 @@ module.exports = {
 		'react'
 	],
 	'rules': {
-		'indent': [
-			'error',
-			'tab'
-		],
-		'linebreak-style': [
-			'error',
-			'windows'
-		],
+		"react/prop-types": "off",
+		'indent': 'off',
+		'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
 		'quotes': [
 			'error',
 			'single'

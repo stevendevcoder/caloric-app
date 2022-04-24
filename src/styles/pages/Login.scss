@@ -13,6 +13,8 @@
   color: #000;
 
   .login{
+    position: relative;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     letter-spacing: 1.1px;
@@ -32,11 +34,11 @@
  
 }
 input{
- background-color: rgba(255, 255, 255, 0.869);
  padding: .5em;
- border-radius: 5px;
  margin: .5em;
- border-color: #222;
+}
+.checkbox {
+  margin-left: 10px;
 }
 .checkbox,.login,.login-or-register{
  
@@ -47,7 +49,7 @@ input{
  margin: 2em;
 }
 .image-login{
- background-image: url("../../assets/images/image-login.png");
+ background-image: url("../../assets/images/animation_500_l1p7tykp.gif");
  background-size: cover;
  background-position:center;
  background-repeat: no-repeat;
@@ -75,6 +77,52 @@ input{
 
     width: inherit;
     }
+  }
+}
+
+.containerUsers {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
+  height: auto;
+
+  .user-card {
+    width: 100px;
+    background-color: #222;
+    color: #fff;
+  }
+}
+
+.changeMode {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  justify-content: space-evenly;
+  left: 80px;
+  top: 30px;
+  transition: font-size .7s;
+
+  &:hover {
+    cursor: pointer;
+    color: #132e20;
+    transition: font-size .7s;
+    p {
+      font-size: 23px;
+      font-weight: 400;
+      transition: font-size .7s;
+    }
+  }
+  #icon-left {
+    font-size: 30px;
+    flex-grow: 1;
+  }
+  p {
+    font-size: 22px;
+    font-weight: 350;
+    flex-grow: 2;
+    margin: 20px 0px 20px 15px;
   }
 }
 

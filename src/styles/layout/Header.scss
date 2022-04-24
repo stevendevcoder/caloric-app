@@ -43,9 +43,12 @@
       border-radius: 5px;
       color: $amarillo;
     }
-    &:hover{
+    &:hover,  &--active{
       background: $verde;
       color: $amarillo;
+      
+    }
+    &:hover{
       overflow: visible;
     }
   }
