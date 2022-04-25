@@ -5,11 +5,11 @@ import { ProtectedRoute } from '../components/ProtectedRoute';
 
 import Login from 'pages/auth/Login';
 import Layout from 'Layout';
-import Requerimientos from 'pages/home/Requerimientos';
-import Comidas from 'pages/home/Comidas';
-import Macronutrientes from 'pages/home/Macronutrientes';
-import Menu from 'pages/home/Menu';
-import Settings from 'pages/home/Settings';
+import Requerimientos from '../pages/Home/Requerimientos';
+import Comidas from '../pages/Home/Comidas';
+import Macronutrientes from '../pages/Home/Macronutrientes';
+import Menu from '../pages/Home/Menu';
+import Settings from '../pages/Home/Settings';
 
 import Charts from 'pages/dashboard/Charts';
 import Search from 'pages/dashboard/Search';
