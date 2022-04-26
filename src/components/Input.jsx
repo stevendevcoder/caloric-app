@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { AiFillEyeInvisible } from 'react-icons/ai';
 import { AiFillEye } from 'react-icons/ai';
 
-export default function Input({ name, handleChange, error, type, label }) {
+export default function Input({ name, handleChange, error, type, label}) {
 	const [showPassword, setShowPassword] = useState(false);
 	const color = error.length ? 'error' : '';
 
@@ -13,7 +13,6 @@ export default function Input({ name, handleChange, error, type, label }) {
 			{label}
 			<div className={`input ${color}`}>
 				<input 
-					name={name}
 					onChange={handleChange} 
 					type={showPassword ? 'text' : type} />
 

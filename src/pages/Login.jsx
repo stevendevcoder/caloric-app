@@ -11,14 +11,12 @@ import {collection, getDocs, getDoc, query, doc,  addDoc, deleteDoc, updateDoc} 
 import { db } from '../firebase/firebaseConfig';
 
 export default function Login() {
-	const [mode, setMode] = useState(true);
+	const [mode, setMode] = useState(false);
 
 	const { login } = useAuth();
 	const { register } = useAuth();
 	const navigate = useNavigate();
 	const [error, setError] = useState('');
-	console.log(login);
-
 
 	const loginUser = async (user) => {
 		try {

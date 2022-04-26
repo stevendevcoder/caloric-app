@@ -1,0 +1,84 @@
+@import '../colors.scss';
+
+.login {
+  justify-content: start;
+  align-items: center;
+  
+  .container__login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    text-align: center;
+    margin-top: 150px;
+
+    h1 {
+      font-weight: 600;
+    }
+    h2{
+      font-weight: 200;
+    }
+  }
+}
+
+.form__data {  
+  margin-top: 30px;
+  .form__control {
+    display: flex;
+    
+    label {
+      margin: auto auto;
+      font-size: 25px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    input {
+      font-size: 20px;
+      font-weight: bolder;
+      border-radius: 0px;
+      border: 0.5px solid gray;
+      padding: 20px;
+    }
+  }
+
+  .form__control-actividad, .form__control-objetivo{
+    display: flex;
+
+    h2 {
+      width: 60px;
+      margin: auto auto;
+      font-size: 25px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    select {
+      width: 100%;
+      font-size: 15px;
+      font-weight: 400;
+      padding: 15px 5px;
+      cursor: pointer;
+      outline: none;
+      text-transform: uppercase;
+      border-radius: 0px;
+      background: #fff;
+    }
+  }
+
+  button {
+
+    margin-top: 25px;
+    &:hover{
+      background: green;
+      cursor: pointer;
+    }
+  }
+}
+
+.error {
+  color: red;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 20px;
+}

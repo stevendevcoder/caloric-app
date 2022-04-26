@@ -6,7 +6,10 @@ import { FacebookLoginButton,GoogleLoginButton } from
 	import { AiOutlineArrowLeft } from 'react-icons/ai'
 import PropTypes from 'prop-types';
 
+import PersonalData from './PersonalData';
+
 export default function Register({error, createNewUser, setMode}) {
+	const [next, setNext] = useState(true);
 	const [user, setUser] = useState({
 		name: '',
 		email: '',
@@ -16,6 +19,7 @@ export default function Register({error, createNewUser, setMode}) {
 	const handleSubmit = e => {
 		e.preventDefault();
 		createNewUser(user)
+		setNext(true)
 	}
 
 	const handleChange = ({target : {name, value}}) => {
@@ -23,49 +27,56 @@ export default function Register({error, createNewUser, setMode}) {
 	} 
 
 	return (
-		<div className="login">
-			<div className='changeMode' onClick={()=>setMode(true)}>
-				<AiOutlineArrowLeft id='icon-left'/>
-				<p>Iniciar sesión</p>
-			</div>
-			<div className='container-login'>
-
-				<h1 className='message'>Registrarse</h1>
-
-				<Input 
-					name='name'
-					handleChange={handleChange}
-					type='text' 
-					label='Usuario' 
-				/>
-				<Input 
-					name='email'
-					handleChange={handleChange}
-					label='correo' 
-					type="email"
-				/>
-				<Input 
-					name='password'
-					handleChange={handleChange}
-					type='password' 
-					label='constraseña'
-				/>
-
-				<div className="checkbox">	<input id="checkbox" type='checkbox' value='Recordarme'/>
-					<label htmlFor="checkbox">Recordarme</label>
+		<>
+		{ next ? 
+			<PersonalData user={user} setNext={setNext}/> 
+			: 
+			<div className="login">
+				<div className='changeMode' onClick={()=>setMode(true)}>
+					<AiOutlineArrowLeft id='icon-left'/>
+					<p>Iniciar sesión</p>
 				</div>
+				<div className='container-login'>
 
-				<button onClick={handleSubmit}>Crear cuenta</button>
+					<h1 className='message'>Registrarse</h1>
 
-				<Or></Or>
+					<Input 
+						name='name'
+						handleChange={handleChange}
+						type='text' 
+						label='Usuario' 
+					/>
+					<Input 
+						name='email'
+						handleChange={handleChange}
+						label='correo' 
+						type="email"
+					/>
+					<Input 
+						name='password'
+						handleChange={handleChange}
+						type='password' 
+						label='constraseña'
+					/>
 
-				<div className="login-or-register">
-					<FacebookLoginButton type="submit" />
-					<GoogleLoginButton/>					
+					<div className="checkbox">	<input id="checkbox" type='checkbox' value='Recordarme'/>
+						<label htmlFor="checkbox">Recordarme</label>
+					</div>
+
+					<button onClick={handleSubmit}>Crear cuenta</button>
+
+					<Or></Or>
+
+					<div className="login-or-register">
+						<FacebookLoginButton type="submit" />
+						<GoogleLoginButton/>					
+					</div>
+
 				</div>
-
-			</div>
-		</div>  );
+			</div>  
+		}
+		</>
+	);
 }
 
 Register.propTypes = {
