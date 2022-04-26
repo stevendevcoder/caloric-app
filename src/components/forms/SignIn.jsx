@@ -14,7 +14,6 @@ import { DASHBOARD } from "constants/route.constants";
 import { Formik, Form } from "formik";
 
 export default function SignIn({ setMode }) {
-  const [user, setUser] = useState({ email: "", password: "" });
   const [errorFirebase, setErrorFirebase] = useState("");
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -26,59 +25,83 @@ export default function SignIn({ setMode }) {
       navigate("/dashboard");
     } catch (error) {
       setErrorFirebase(error.code);
-      console.log(error.code);
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    loginUser(user);
-  };
-
-  const handleChange = ({ target: { name, value } }) => {
-    setUser({ ...user, [name]: value });
-    console.log(user);
-  };
   return (
     <>
-      <Formik>
-        <Form className="login">
-          <div className="changeMode" onClick={() => setMode(false)}>
-            <AiOutlineArrowLeft id="icon-left" />
-            <p>Registrarse</p>
-          </div>
-          <div className="container-login">
-            <h1 className="message">Inciar sesion</h1>
+      <Formik
+        initialValues={{ email: "", password: "" }}
+        validate={(values) => {
+          const errores = {};
+          if (errorFirebase.length > 0) {
+            errores.email = errorFirebase;
+            console.log("hola");
+          }
+          if (!values.email.length) {
+            errores.email = "Requerido";
+          } else if (
+            !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
+              values.email
+            )
+          ) {
+            errores.email = "Correo invalido";
+          }
 
-            <Input
-              type="email"
-              name="email"
-              error={errorFirebase}
-              label="Email"
-            />
-            <Input
-              type="password"
-              name="password"
-              error={errorFirebase}
-              label="contraseña"
-            />
-
-            <div className="checkbox">
-              {" "}
-              <input id="checkbox" type="checkbox" value="Recordarme" />
-              <label htmlFor="checkbox">Recordarme </label>
+          if (!values.password.length) {
+            errores.password = "Requirido";
+          } else if (
+            !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,15}$/.test(
+              values.password
+            )
+          ) {
+            errores.password = "Contraseña invalido";
+          }
+          return errores;
+        }}
+        onSubmit={(valores) => {
+          loginUser(valores);
+        }}
+      >
+        {({ errors, touched }) => (
+          <Form className="login">
+            <div className="changeMode" onClick={() => setMode(false)}>
+              <AiOutlineArrowLeft id="icon-left" />
+              <p>Registrarse</p>
             </div>
-            <button onClick={handleSubmit} className="">
-              Continuar
-            </button>
+            <div className="container-login">
+              <h1 className="message">Inciar sesion</h1>
 
-            <Or></Or>
-            <div className="login-or-register">
-              <FacebookLoginButton type="submit" />
-              <GoogleLoginButton />
+              <Input
+                type="email"
+                name="email"
+                label="Email"
+                errors={errors.email}
+                touched={touched.email}
+              />
+              <Input
+                type="password"
+                name="password"
+                label="contraseña"
+                errors={errors.password}
+                touched={touched.password}
+              />
+
+              <div className="checkbox">
+                {" "}
+                <input id="checkbox" type="checkbox" value="Recordarme" />
+                <label htmlFor="checkbox">Recordarme </label>
+              </div>
+              <button type="submit">Continuar</button>
+
+              <Or></Or>
+              <div className="login-or-register">
+                <FacebookLoginButton type="submit" />
+                <GoogleLoginButton />
+              </div>
             </div>
-          </div>
-        </Form>
+          </Form>
+        )}
       </Formik>
     </>
   );

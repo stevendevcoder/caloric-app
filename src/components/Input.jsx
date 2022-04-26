@@ -2,23 +2,28 @@ import React, { useState } from "react";
 import "../styles/Input.scss";
 import PropTypes from "prop-types";
 import { AiFillEyeInvisible } from "react-icons/ai";
-import { AiFillEye } from "react-icons/ai";
+import { AiFillEye, AiOutlineCheckCircle } from "react-icons/ai";
+import { TiDelete } from "react-icons/ti";
 import Error from "./Error";
 import { Field } from "formik";
-export default function Input({ name, handleChange, error, type, label }) {
-  const [showPassword, setShowPassword] = useState(false);
-  const color = error.length ? "error" : "";
 
+export default function Input({ name, errors, label, touched }) {
+  const [showPassword, setShowPassword] = useState(false);
+  const color = errors.length ? "error" : "";
   return (
     <label>
       {label}
       <div className={`input ${color}`}>
         <Field
           name={name}
-          onChange={handleChange}
-          type={showPassword ? "text" : type}
+          id={name}
+          type={
+            name === "password" ? (showPassword ? "text" : "password") : "text"
+          }
         />
-        {type === "password" &&
+        <TiDelete className="delete"></TiDelete>
+        <AiOutlineCheckCircle className="check"></AiOutlineCheckCircle>
+        {name === "password" &&
           (showPassword ? (
             <AiFillEye
               onClick={() => setShowPassword(false)}
@@ -30,19 +35,18 @@ export default function Input({ name, handleChange, error, type, label }) {
               className="icon-password"
             />
           ))}
-        {error && <Error error={error}></Error>}
+        {touched && errors && <Error error={errors}></Error>}
       </div>
     </label>
   );
 }
 Input.defaultProps = {
-  type: "text",
-  error: "",
+  errors: "",
+  touched: false,
 };
 
 Input.propTypes = {
-  error: PropTypes.string,
-  type: PropTypes.string,
+  errors: PropTypes.string,
   label: PropTypes.string,
-  handleChange: PropTypes.func,
+  touched: PropTypes.bool,
 };

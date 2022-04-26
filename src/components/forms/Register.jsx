@@ -1,24 +1,20 @@
 import React, { useState } from "react";
 import Or from "components/Or";
-import { AiFillEyeInvisible } from "react-icons/ai";
-import { AiFillEye } from "react-icons/ai";
-import Error from "../Error";
+import Input from "../Input";
 import {
   FacebookLoginButton,
   GoogleLoginButton,
 } from "react-social-login-buttons";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import PropTypes from "prop-types";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "context/authContext";
 import { DASHBOARD } from "constants/route.constants";
 
 export default function Register({ setMode }) {
-  const [errorFirebase, setErrorFirebase] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const color = errorFirebase.length ? "error" : "";
+  const [errorFirebase, setErrorFirebase] = useState("");
 
   const navigate = useNavigate();
   const { register } = useAuth();
@@ -29,8 +25,8 @@ export default function Register({ setMode }) {
       await register(newUser.email, newUser.password);
       navigate(DASHBOARD);
     } catch (error) {
-      let msgError = error.code;
-      console.log(error.code);
+      let msgError = "";
+      console.log((error.code = "auth/internal-error"));
       if (error.code === "auth/internal-error") {
         msgError = "Email invalido";
       } else if (error.code === "auth/weak-password") {
@@ -48,11 +44,9 @@ export default function Register({ setMode }) {
         initialValues={{ email: "", password: "" }}
         validate={(values) => {
           const errores = {};
-          console.log(errorFirebase, errorFirebase.length > 0);
-          if (errorFirebase.length) {
+          if (errorFirebase.length > 0) {
             errores.email = errorFirebase;
           }
-
           if (!values.email.length) {
             errores.email = "Requerido";
           } else if (
@@ -80,51 +74,34 @@ export default function Register({ setMode }) {
       >
         {({ errors, touched }) => (
           <Form className="login">
+            {console.log(errors.email, touched.email)}
             <div className="changeMode" onClick={() => setMode(true)}>
               <AiOutlineArrowLeft id="icon-left" />
               <p>Iniciar sesión</p>
             </div>
             <div className="container-login">
               <h1 className="message">Registrarse</h1>
-              <label>
-                Correo
-                <div className={`input ${color}`}>
-                  <Field id="email" type="email" name="email" />
-                  {touched.email && errors.email && (
-                    <Error error={errors.email}></Error>
-                  )}
-                </div>
-              </label>
-              <label>
-                Password
-                <div className={`input ${color}`}>
-                  <Field id="password" name="password" type="password"></Field>
-                  {touched.password && errors.password && (
-                    <Error error={errors.password}></Error>
-                  )}
-                  {showPassword ? (
-                    <AiFillEye
-                      onClick={() => setShowPassword(false)}
-                      className="icon-password"
-                    />
-                  ) : (
-                    <AiFillEyeInvisible
-                      onClick={() => setShowPassword(true)}
-                      className="icon-password"
-                    />
-                  )}
-                </div>
-              </label>
-
+              <Input
+                type="email"
+                name="email"
+                placeholder
+                errors={errors.email}
+                touched={touched.email}
+                label="Email"
+              />
+              <Input
+                name="password"
+                type="password"
+                errors={errors.password}
+                touched={touched.password}
+                label="constraseña"
+              />
               <div className="checkbox">
                 <input id="checkbox" type="checkbox" value="Recordarme" />
                 <label htmlFor="checkbox">Recordarme</label>
               </div>
-
               <button type="submit">Crear cuenta</button>
-
               <Or></Or>
-
               <div className="login-or-register">
                 <FacebookLoginButton type="submit" />
                 <GoogleLoginButton />
