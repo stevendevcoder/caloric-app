@@ -52,8 +52,8 @@
       right: 0px;
       width: 60px;
       height: 100%;
-      background-color: $verde-principal;
-      color: $just-white;
+      background-color: $verde;
+      color: $white;
       font-size: 25px;
       font-weight: bolder;
       text-align: center;
@@ -85,7 +85,7 @@
       outline: none;
       text-transform: uppercase;
       border-radius: 0px;
-      background: #fff;
+      background: $white;
     }
 
     .control__box {
@@ -96,8 +96,8 @@
       right: 0;
       width: 60px;
       height: 100%;
-      background-color: $verde-principal;
-      color: $just-white;
+      background-color: $verde;
+      color: $white;
       font-size: 25px;
       font-weight: bolder;
       text-align: center;
@@ -114,7 +114,7 @@
     label {
       position: relative;
       font-size: 30px;
-      border: 2px solid $verde-principal;
+      border: 2px solid $verde;
       border-radius: 5px;
       padding: 10px 50px;
       cursor: pointer;
@@ -128,8 +128,8 @@
       }
     }
     .checked {
-      background-color: $verde-principal;
-      color: $just-white;
+      background-color: $verde;
+      color: $white;
     }
   }
 

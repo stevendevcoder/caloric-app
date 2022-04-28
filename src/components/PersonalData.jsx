@@ -1,24 +1,27 @@
 import React, { useState, useContext } from 'react';
-import { Formik, Field, Form, ErrorMessage, FieldArray} from 'formik';
-import { AiOutlineArrowLeft } from 'react-icons/ai'
 import 'styles/pages/PersonalData.scss';
-//import InputPersonalData from 'components/InputPersonalData';
+
+import { Formik, Field, Form, ErrorMessage, FieldArray} from 'formik';
 import SelectOpt from 'components/SelectOpt';
+
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { AiOutlineMan, AiOutlineWoman } from 'react-icons/ai';
 import { FiUser } from 'react-icons/fi';
 import { BiRun } from 'react-icons/bi';
 import { MdEmojiObjects } from 'react-icons/md';
 
-export default function PersonalData({ setNext, user }) {
-  const [data, setData] = useState({
-    user: user,
-    estatura: '',
-    peso: '',
-    sexo: 'hombre',
-    edad: '',
-    actividad: '',
-    objetivo: ''
-  })
+import { useAuth } from 'context/authContext';
+import { useNavigate } from "react-router-dom";
+import { DASHBOARD } from "constants/route.constants";
+
+export default function PersonalData({ setNext, registerUser }) {
+  const { user } = useAuth();
+  const { setPersonalData } = useAuth();
+  const navigate = useNavigate();
+
+  if(!user) { //Si no se ha creado el usuario, volver al register
+    setNext(false);
+  }
 
   return (
     <div className="login">
@@ -51,13 +54,18 @@ export default function PersonalData({ setNext, user }) {
             if(!values.objetivo) errores.objetivo = "Agregar campo";
             return errores;
           }}
-          onSubmit={(values, {resetForm}) => {
-            resetForm();
-            console.log(values);
-            setData(values);
+          onSubmit={ async (values, {resetForm}) => {
+            try {
+              resetForm();
+              await setPersonalData({nombre: registerUser.name, ...values});
+              console.log("TODO CREADO EXITOSAMENTE!")
+              navigate(DASHBOARD);
+            } catch(firebaseError) {
+              console.log(firebaseError.code)
+            }
           }}
         >
-          {({ values, touched, errors, handleChange ,getFieldProps }) => (
+          {({ values, touched, errors}) => (
             <Form className='form__data'>
               {console.log(values.sexo)}
               <div className="form__control">
@@ -97,12 +105,13 @@ export default function PersonalData({ setNext, user }) {
               </div>
               <div className='form__control'>
                 <label htmlFor="peso">Peso</label>
-                <input 
+                <Field 
                   type="number" 
                   name="peso" 
                   id="peso" 
                   placeholder="Peso en kg"
                   pattern="[0-9]"
+                  maxLength="3"
                   required
                 />
                 <div className="control__box">Kg</div>

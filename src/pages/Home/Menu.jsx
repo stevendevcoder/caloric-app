@@ -1,7 +1,6 @@
-import { signOut } from 'firebase/auth';
 import React from 'react';
-import { useAuth } from '../context/authContext';
-import { useNavigate } from 'react-router-dom'
+import { useAuth } from 'context/authContext';
+import { useNavigate } from 'react-router-dom';
 
 function Menu() {
 	const { user, logout } = useAuth();
@@ -9,8 +8,8 @@ function Menu() {
 
 	const handleLogout = async() => {
 		await logout();
-		navigate('/auth')
-	}
+		navigate('/auth');
+	};
 
 	return (
 		<div>
@@ -19,7 +18,7 @@ function Menu() {
 			</h1>
 			<button onClick={handleLogout}>Cerrar sesión</button>
 		</div>
-	)
+	);
 }
 
 export default Menu;
