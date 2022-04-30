@@ -1,5 +1,5 @@
+@import '../colors.scss';
 //ESTILOS GENERALES
-
 .container,
 .image-login,
 .login,
@@ -134,4 +134,11 @@ input {
     flex-grow: 2;
     margin: 20px 0px 20px 16px;
   }
+}
+
+.errorFirebase {
+  background-color: $rojo;
+  color: #fff;
+  font-size: 20px;
+  
 }

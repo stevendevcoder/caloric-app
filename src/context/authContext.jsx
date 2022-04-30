@@ -26,6 +26,7 @@ export function AuthProvider({ children }) {
     objetivo: ''
   })
   const [loading, setLoading] = useState(true);
+  const [loadingData, setLoadingData] = useState(true);
 
   const register = (email, password) => 
     createUserWithEmailAndPassword(auth, email, password)
@@ -33,33 +34,45 @@ export function AuthProvider({ children }) {
   const login = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
 
-  const setPersonalData = (data) => 
+  const setPersonalData = (data) => {
     setDoc(doc(db, 'users', user.uid), data);
+    console.log("Estableciendo datos:", data)
+  }
 
   const getAccountData = async () => {
     if(user) {
-      const q = await getDoc(doc(db, 'users', user.uid));
-      const response = q.data()
-      console.log("Estableciendo datos:", response)
-      setData(response);
+      try {
+        const q = await getDoc(doc(db, 'users', user.uid))
+        const response = q.data();
+        setData(response);
+        console.log("Obteniendo datos:", response)
+      } catch (error) {
+        console.log("Error getDoc: ",error)
+      }
+    } else {
+      console.log("No se puede obtener datos porque el usuario no está logueado")
     }
   }
     
   const logout = () => signOut(auth);
 
   useEffect(() => {
-    getAccountData();
+    console.log("useeffect")
     const unsuscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log(currentUser);
-      if(currentUser) console.log(currentUser.uid)
+      if(currentUser) { 
+        console.log("[SESION]: ",currentUser.uid)
+      }
       setLoading(false);
     });
     return () => unsuscribe();
   }, []);
 
   return (
-    <authContext.Provider value={{ register, login, data, user, logout, loading, setPersonalData, getAccountData}}>
+    <authContext.Provider value={{ 
+      register, login, data, user, logout, loading, 
+      setPersonalData, getAccountData, loadingData, setLoadingData
+    }}>
       {children}
     </authContext.Provider>
   );

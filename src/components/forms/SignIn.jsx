@@ -16,13 +16,12 @@ import { Formik, Form } from "formik";
 export default function SignIn({ setMode }) {
   const [errorFirebase, setErrorFirebase] = useState("");
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, getAccountData } = useAuth();
 
   const loginUser = async (user) => {
     try {
       setErrorFirebase("");
       await login(user.email, user.password);
-      navigate("/dashboard");
     } catch (error) {
       setErrorFirebase(error.code);
     }
@@ -59,8 +58,9 @@ export default function SignIn({ setMode }) {
           }
           return errores;
         }}
-        onSubmit={(valores) => {
-          loginUser(valores);
+        onSubmit={ async (valores) => {
+          await loginUser(valores);
+          navigate(DASHBOARD);
         }}
       >
         {({ errors, touched }) => (

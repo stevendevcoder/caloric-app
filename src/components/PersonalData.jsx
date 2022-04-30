@@ -3,29 +3,25 @@ import 'styles/pages/PersonalData.scss';
 
 import { Formik, Field, Form, ErrorMessage, FieldArray} from 'formik';
 import SelectOpt from 'components/SelectOpt';
+import Error from 'components/Error'
 
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { AiOutlineMan, AiOutlineWoman } from 'react-icons/ai';
 import { FiUser } from 'react-icons/fi';
 import { BiRun } from 'react-icons/bi';
 import { MdEmojiObjects } from 'react-icons/md';
+import { TiDelete } from "react-icons/ti";
 
 import { useAuth } from 'context/authContext';
 import { useNavigate } from "react-router-dom";
 import { DASHBOARD } from "constants/route.constants";
 
 export default function PersonalData({ setNext, registerUser }) {
-  const { user } = useAuth();
-  const { setPersonalData } = useAuth();
+  const { user, data, setPersonalData, getAccountData } = useAuth();
   const navigate = useNavigate();
-
-  if(!user) { //Si no se ha creado el usuario, volver al register
-    setNext(false);
-  }
 
   return (
     <div className="login">
-      {console.log(data)}
       <div className='changeMode' onClick={()=>setNext(false)}>
 					<AiOutlineArrowLeft id='icon-left'/>
 					<p>Volver</p>
@@ -43,12 +39,10 @@ export default function PersonalData({ setNext, registerUser }) {
             let errores = {};
 
             if(isNaN(values.estatura)){
-              errores.estatura = "La estatura es invalido"
-              console.log(errores.estatura)
+              errores.estatura = "La estatura es invalida"
             } 
             if(isNaN(values.peso)){
               errores.peso = "El peso es invalido"
-              console.log(errores.peso)
             }
             if(!values.actividad) errores.actividad = "Agregar campo";
             if(!values.objetivo) errores.objetivo = "Agregar campo";
@@ -58,16 +52,16 @@ export default function PersonalData({ setNext, registerUser }) {
             try {
               resetForm();
               await setPersonalData({nombre: registerUser.name, ...values});
+              console.log("Data seteada correctamente")
               console.log("TODO CREADO EXITOSAMENTE!")
               navigate(DASHBOARD);
             } catch(firebaseError) {
-              console.log(firebaseError.code)
+              console.log("Error de firebase**",firebaseError)
             }
           }}
         >
           {({ values, touched, errors}) => (
             <Form className='form__data'>
-              {console.log(values.sexo)}
               <div className="form__control">
                 <label htmlFor="edad">Edad</label>
                 <Field 
@@ -80,11 +74,10 @@ export default function PersonalData({ setNext, registerUser }) {
                   required
                 />
                 <div className="control__box">
-                  <FiUser />
+                  { errors.edad && touched.edad ?
+                    <TiDelete className='errorIcon'/> : <FiUser />
+                  }
                 </div>
-                <ErrorMessage name="edad" component={() => (
-                  <div className="error" >{errors.edad}</div>
-                )}/>
               </div>
               <div className='form__control'>
                 <label htmlFor="estatura">Estatura</label>
@@ -97,11 +90,11 @@ export default function PersonalData({ setNext, registerUser }) {
                   required
                   maxLength="3"
                 />
-                <div className="control__box">CM</div>
-
-                <ErrorMessage name="estatura" component={() => (
-                  <div className="error" >{errors.estatura}</div>
-                )}/>
+                <div className="control__box">
+                  { errors.estatura && touched.estatura ?
+                    <TiDelete className='errorIcon'/> : 'CM'
+                  }
+                </div>
               </div>
               <div className='form__control'>
                 <label htmlFor="peso">Peso</label>
@@ -114,10 +107,11 @@ export default function PersonalData({ setNext, registerUser }) {
                   maxLength="3"
                   required
                 />
-                <div className="control__box">Kg</div>
-                <ErrorMessage name="peso" component={() => (
-                  <div className="error" >{errors.peso}</div>
-                )}/>
+                <div className="control__box">
+                  { errors.peso && touched.peso ?
+                    <TiDelete className='errorIcon'/> : 'KG'
+                  }
+                </div>        
               </div>
 
               <div className="form__control-select">
@@ -133,9 +127,6 @@ export default function PersonalData({ setNext, registerUser }) {
                 <div className="control__box">
                   <BiRun />
                 </div>
-                <ErrorMessage name="estatura" component={() => (
-                  <div className="error" >{errors.estatura}</div>
-                )}/>
               </div>
 
               <div className="form__control-select">
@@ -149,9 +140,6 @@ export default function PersonalData({ setNext, registerUser }) {
                 <div className="control__box">
                   <MdEmojiObjects />
                 </div>
-                <ErrorMessage name="estatura" component={() => (
-                  <div className="error" >{errors.estatura}</div>
-                )}/>
               </div>
 
               <div className="form__control-sexo">
