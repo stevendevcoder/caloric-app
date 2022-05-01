@@ -1,81 +1,91 @@
+@import '../colors.scss';
 //ESTILOS GENERALES
-
-.container,.image-login,.login,.or{
- align-items: center;
- justify-content: center;
+.container,
+.image-login,
+.login,
+.or {
+  align-items: center;
+  justify-content: center;
 }
-.container{
+.container {
   width: 100vw;
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
+  align-items: center;
   color: #000;
 
-  .login{
+  .login {
+    align-self: center;
     position: relative;
     flex-direction: column;
     width: 100%;
     height: 100%;
     letter-spacing: 1.1px;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
- 
 }
-.container-login{
-  padding: 0px 60px;
-
-
+.container-login {
+  padding: 120px 60px;
 }
-.image-login{
- background: linear-gradient(0deg, #1C4430, #1C4430);
- width: 100%;
- height: 100%;
- 
- 
+.image-login {
+  background: linear-gradient(0deg, #1c4430, #1c4430);
+  width: 100%;
+  height: 100%;
 }
-input{
- padding: .5em;
- margin: .5em;
+input {
+  padding: 0.5em;
+  margin: 0.5em;
 }
 .checkbox {
   margin-left: 10px;
 }
-.checkbox,.login,.login-or-register{
- 
- display: flex;
- 
+.checkbox,
+.login,
+.login-or-register {
+  display: flex;
 }
-.login-or-register{
- margin: 2em;
+.login-or-register {
+  margin: 2em;
 }
-.image-login{
- background-image: url("../../assets/images/animation_500_l1p7tykp.gif");
- background-size: cover;
- background-position:center;
- background-repeat: no-repeat;
- }
+.image-login.avocado {
+  background-image: url("../../assets/images/avocado.gif");
+}
+.image-login.running {
+  background-image: url("../../assets/images/running.gif");
+}
+.avocado,
+.running {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .message {
- font-size: 40px;
- text-align: center;
- margin: .5em;
+  font-size: 40px;
+  text-align: center;
+  margin: 0.5em;
 }
 
 .login_inputs {
- display: flex;
- flex-direction: column;
- justify-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
 }
 
-@media (max-width: 760px){
-.image-login {display: none;}
- .container{
-  display: block;
-  width: 100vw;
-  height: 100vh;
-  top: 50%;
-  .container-login{
-
-    width: inherit;
+@media (max-width: 1060px) {
+  .image-login {
+    display: none;
+  }
+  .container {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    top: 50%;
+    .container-login {
+      width: inherit;
     }
   }
 }
@@ -102,16 +112,16 @@ input{
   justify-content: space-evenly;
   left: 80px;
   top: 30px;
-  transition: font-size .7s;
+  transition: font-size 0.7s;
 
   &:hover {
     cursor: pointer;
     color: #132e20;
-    transition: font-size .7s;
+    transition: font-size 0.7s;
     p {
       font-size: 23px;
       font-weight: 400;
-      transition: font-size .7s;
+      transition: font-size 0.7s;
     }
   }
   #icon-left {
@@ -122,7 +132,13 @@ input{
     font-size: 22px;
     font-weight: 350;
     flex-grow: 2;
-    margin: 20px 0px 20px 15px;
+    margin: 20px 0px 20px 16px;
   }
 }
 
+.errorFirebase {
+  background-color: $rojo;
+  color: #fff;
+  font-size: 20px;
+  
+}
