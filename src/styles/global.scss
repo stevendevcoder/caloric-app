@@ -1,5 +1,6 @@
-@import'./_colors';
+@import "./_colors";
 @import "./_fonts";
+@import "mixins";
 body {
   margin: 0;
   font-family: $font-family;
@@ -12,13 +13,12 @@ body {
   margin: 0;
   text-decoration: none;
 }
-p{
- @include p-fonts;
-
+p {
+  @include p-fonts;
 }
-h1{
- @include h1-fonts;
+h1 {
+  @include h1-fonts;
 }
-h2{
- @include h2-fonts
+h2 {
+  @include h2-fonts;
 }

@@ -1,23 +1,18 @@
 import React from 'react';
 import { useAuth } from 'context/authContext';
+import RecipesList from 'components/RecipesList';
 //import { useNavigate } from 'react-router-dom';
-
+import styles from 'styles/pages/dashboard/dashboard.module.scss';
 export default function Dashboard() {
-	const { user, logout } = useAuth();
+  const { user } = useAuth();
+  console.log(user.photoURL);
 
-	console.log(user);
-
-	const handleLogout = async() => {
-		await logout();
-		console.log('Cerrando sesion');
-	};
-	return (
-		<div>
-			<h1>Dashboard</h1>
-			<h2> 
-				Bienvenido {user.email}
-			</h2>
-			<button onClick={handleLogout}>Cerrar sesión</button>
-		</div>
-	);
+  return (
+    <section className={styles.dashboard__home}>
+      <RecipesList />
+      <RecipesList />
+      <RecipesList />
+      <RecipesList />
+    </section>
+  );
 }
