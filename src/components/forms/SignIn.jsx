@@ -1,69 +1,114 @@
-import React, {useState} from 'react';
-import Input from 'components/Input';
-import Or from 'components/Or';
-import { FacebookLoginButton,GoogleLoginButton } from 
-	'react-social-login-buttons';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
-import PropTypes from 'prop-types';
+import React, { useState } from "react";
+import Input from "components/Input";
+import Or from "components/Or";
+import {
+  FacebookLoginButton,
+  GoogleLoginButton,
+} from "react-social-login-buttons";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import PropTypes from "prop-types";
 
-export default function SignIn({ error, loginUser, setMode }) {	
-	const [user, setUser] = useState({
-		email: '',
-		password: ''
-	});
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "context/authContext";
+import { DASHBOARD } from "constants/route.constants";
+import { Formik, Form } from "formik";
 
-	const handleSubmit = e => {
-		e.preventDefault();
-		loginUser(user);
-	};
+export default function SignIn({ setMode }) {
+  const [errorFirebase, setErrorFirebase] = useState("");
+  const navigate = useNavigate();
+  const { login, getAccountData } = useAuth();
 
-	const handleChange = ({target : {name, value}}) => {
-		setUser({...user, [name]: value});
-		console.log(user);
-	};
-	return (
-		<div className="login">
-			<div className='changeMode' onClick={()=>setMode(false)}>
-				<AiOutlineArrowLeft id='icon-left'/>
-				<p>Registrarse</p>
-			</div>
-			<div className='container-login'>
+  const loginUser = async (user) => {
+    try {
+      setErrorFirebase("");
+      await login(user.email, user.password);
+    } catch (error) {
+      setErrorFirebase(error.code);
+    }
+  };
 
-				<h1 className='message'>Inciar sesion</h1>
-				
-				<Input 
-					type='email' 
-					name='email'
-					error={error}
-					handleChange={handleChange}  
-					label='Email' 
-				/>
-				<Input 
-					type='password' 
-					name='password'
-					error={error}
-					handleChange={handleChange} 
-					label='contraseña'
-				/>
+  return (
+    <>
+      <Formik
+        initialValues={{ email: "", password: "" }}
+        validate={(values) => {
+          const errores = {};
+          if (errorFirebase.length > 0) {
+            errores.email = errorFirebase;
+            console.log("hola");
+          }
+          if (!values.email.length) {
+            errores.email = "Requerido";
+          } else if (
+            !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
+              values.email
+            )
+          ) {
+            errores.email = "Correo invalido";
+          }
 
-				<div className="checkbox">	<input id="checkbox" type='checkbox' value='Recordarme'/>
-					<label htmlFor="checkbox">Recordarme </label></div>
-				<button onClick={handleSubmit} className=''>Continuar</button>
-					
+          if (!values.password.length) {
+            errores.password = "Requirido";
+          } else if (
+            !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,15}$/.test(
+              values.password
+            )
+          ) {
+            errores.password = "Contraseña invalido";
+          }
+          return errores;
+        }}
+        onSubmit={ async (valores) => {
+          await loginUser(valores);
+          navigate(DASHBOARD);
+        }}
+      >
+        {({ errors, touched }) => (
+          <Form className="login">
+            <div className="changeMode" onClick={() => setMode(false)}>
+              <AiOutlineArrowLeft id="icon-left" />
+              <p>Registrarse</p>
+            </div>
+            <div className="container-login">
+              <h1 className="message">Inciar sesion</h1>
 
-				<Or></Or>
-				<div className="login-or-register">
-					<FacebookLoginButton type="submit"/>
-					<GoogleLoginButton />					
-				</div>
+              <Input
+                type="email"
+                name="email"
+                label="Email"
+                errors={errors.email}
+                touched={touched.email}
+              />
+              <Input
+                type="password"
+                name="password"
+                label="contraseña"
+                errors={errors.password}
+                touched={touched.password}
+              />
 
-			</div>
-		</div>
-	);
+              <div className="checkbox">
+                {" "}
+                <input id="checkbox" type="checkbox" value="Recordarme" />
+                <label htmlFor="checkbox">Recordarme </label>
+              </div>
+              <button type="submit">Continuar</button>
+
+              <Or></Or>
+              <div className="login-or-register">
+                <FacebookLoginButton type="submit" />
+                <GoogleLoginButton />
+              </div>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </>
+  );
 }
 
 SignIn.propTypes = {
-	error: PropTypes.string, 
-	loginUser: PropTypes.func,
-	setMode: PropTypes.func
+  error: PropTypes.string,
+  loginUser: PropTypes.func,
+  setMode: PropTypes.func,
 };

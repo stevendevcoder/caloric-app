@@ -6,27 +6,27 @@ $font-family: 'Roboto Condensed', sans-serif;
 @mixin h1-fonts {
   font-family: $font-family;
   font-style: normal;
-  font-weight: bolder;
+  font-weight: bold;
   font-size: 25px;
 }
 
 @mixin h2-fonts {
   font-family: $font-family;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 650;
   font-size: 18px; 
 }
 
 @mixin p-fonts {
   font-family: $font-family;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 14px; 
 }
 
 @mixin btn-fonts {
   font-family: $font-family;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 800;
   font-size: 15px;
 }

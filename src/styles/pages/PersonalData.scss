@@ -1,0 +1,198 @@
+@import '../colors.scss';
+
+.login {
+  justify-content: start;
+  align-items: center;
+  
+  .container__login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    text-align: center;
+    margin-top: 150px;
+
+    h1 {
+      font-weight: 600;
+    }
+    h2{
+      font-weight: 200;
+    }
+  }
+}
+
+.form__data {  
+  margin-top: 30px;
+  .form__control {
+    position: relative;
+    display: flex;
+    margin-top: 10px;
+
+    label {
+      margin: auto auto auto 0;
+      font-size: 25px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    input {
+      min-width: 366px;
+      font-size: 20px;
+      font-weight: bolder;
+      border-radius: 0px;
+      border: 0.5px solid gray;
+      padding: 20px;
+      margin: 0px;
+    }
+    .control__box {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      right: 0px;
+      width: 60px;
+      height: 100%;
+      background-color: $verde;
+      color: $white;
+      font-size: 25px;
+      font-weight: bolder;
+      text-align: center;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+  }
+
+  .form__control-select{
+    position: relative;
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    label {
+      margin: auto auto auto 0;
+      font-size: 25px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .select {
+      min-width: 100%;
+      font-size: 15px;
+      font-weight: 400;
+      padding: 15px 5px;
+      cursor: pointer;
+      outline: none;
+      text-transform: uppercase;
+      border-radius: 0px;
+      background: $white;
+    }
+
+    .control__box {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      right: 0;
+      width: 60px;
+      height: 100%;
+      background-color: $verde;
+      color: $white;
+      font-size: 25px;
+      font-weight: bolder;
+      text-align: center;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+  }
+
+  .form__control-sexo {
+    display: flex;
+    justify-content: space-evenly;
+
+    
+    label {
+      position: relative;
+      font-size: 30px;
+      border: 2px solid $verde;
+      border-radius: 5px;
+      padding: 10px 50px;
+      cursor: pointer;
+
+      input[type="radio"] {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+      }
+    }
+    .checked {
+      background-color: $verde;
+      color: $white;
+    }
+  }
+
+  button {
+
+    margin-top: 25px;
+    &:hover{
+      background: green;
+      cursor: pointer;
+    }
+  }
+}
+
+.errorIcon {
+  color: red;
+}
+.react-select .react-select__control {
+  cursor: pointer;
+  width: 366px;
+  background-color: #fff;
+  min-height: 60px;
+  border-color: gray;
+  border-radius: 0px;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+.react-select .react-select__indicator-separator  {
+  color: gray;
+}
+
+.react-select .react-select__value-container {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.react-select .react-select__indicator{
+  color: rgb(65, 65, 65);
+}
+
+@media (max-width: 500px){
+  .form__control {
+    flex-direction: column;
+
+    input {
+      font-size: 15px;
+      min-width: 70%;
+    }
+    .control__box {
+      height: 65px;
+      bottom: 0;
+    }
+  }
+  .form__control-select {
+    flex-direction: column;
+
+    .select {
+      font-size: 15px;
+      min-width: 70%;
+    }
+    .control__box {
+      height: 65px;
+      bottom: 0;
+    }
+  }
+}
