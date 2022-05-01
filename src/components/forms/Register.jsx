@@ -1,48 +1,45 @@
-import React, { useState } from "react";
-import Or from "components/Or";
-import Input from "../Input";
+import React, { useState } from 'react';
+import Or from 'components/Or';
+import Input from '../Input';
 import {
   FacebookLoginButton,
   GoogleLoginButton,
-} from "react-social-login-buttons";
-import { AiOutlineArrowLeft } from "react-icons/ai";
-import { TiDelete } from "react-icons/ti";
+} from 'react-social-login-buttons';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { TiDelete } from 'react-icons/ti';
 
-import PropTypes from "prop-types";
-import { Formik, Form } from "formik";
+import PropTypes from 'prop-types';
+import { Formik, Form } from 'formik';
 
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "context/authContext";
-import { DASHBOARD } from "constants/route.constants";
+import { useAuth } from 'context/authContext';
 import PersonalData from '../PersonalData';
 
 export default function Register({ setMode }) {
-  const [errorFirebase, setErrorFirebase] = useState("");
+  const [errorFirebase, setErrorFirebase] = useState('');
   const [next, setNext] = useState(false);
   const [user, setUser] = useState({
     name: '',
     email: '',
-    password: ''
+    password: '',
   });
 
-  const navigate = useNavigate();
   const { register } = useAuth();
 
   const createNewUser = async (data) => {
     try {
-      setErrorFirebase("");
+      setErrorFirebase('');
       setUser(data);
       await register(data.email, data.password);
       //navigate(DASHBOARD);
     } catch (error) {
-      let msgError = "";
-      
-      if (error.code === "auth/internal-error") {
-        msgError = "Email invalido";
-      } else if (error.code === "auth/weak-password") {
-        msgError = "Contraseña insegura";
-      } else if (error.code === "auth/email-alredy-in-use") {
-        msgError = "El email ya está en uso";
+      let msgError = '';
+
+      if (error.code === 'auth/internal-error') {
+        msgError = 'Email invalido';
+      } else if (error.code === 'auth/weak-password') {
+        msgError = 'Contraseña insegura';
+      } else if (error.code === 'auth/email-alredy-in-use') {
+        msgError = 'El email ya está en uso';
       }
       setErrorFirebase(msgError);
     }
@@ -50,41 +47,39 @@ export default function Register({ setMode }) {
 
   return (
     <>
-      {next ?
-        <PersonalData setNext={setNext} registerUser={user}/> 
-
-        :
-
+      {next ? (
+        <PersonalData setNext={setNext} registerUser={user} />
+      ) : (
         <Formik
           initialValues={user}
           validate={(values) => {
             const errores = {};
-            
+
             if (errorFirebase.length > 0) {
               errores.firebase = errorFirebase;
             }
             if (!values.email.length) {
-              errores.email = "Requerido";
+              errores.email = 'Requerido';
             } else if (
               !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
                 values.email
               )
             ) {
-              errores.email = "Correo invalido";
+              errores.email = 'Correo invalido';
             }
 
             if (!values.password.length) {
-              errores.password = "Requirido";
+              errores.password = 'Requirido';
             } else if (
               !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,15}$/.test(
                 values.password
               )
             ) {
-              errores.password = "Contraseña invalida";
+              errores.password = 'Contraseña invalida';
             }
             return errores;
           }}
-          onSubmit={ async (values) => {
+          onSubmit={async (values) => {
             await createNewUser(values);
             setNext(true);
           }}
@@ -120,12 +115,12 @@ export default function Register({ setMode }) {
                   touched={touched.password}
                   label="constraseña"
                 />
-                { errorFirebase != "" &&
+                {errorFirebase != '' && (
                   <div className="errorFirebase">
-                    <TiDelete/>
+                    <TiDelete />
                     {errorFirebase}
                   </div>
-                }
+                )}
                 <div className="checkbox">
                   <input id="checkbox" type="checkbox" value="Recordarme" />
                   <label htmlFor="checkbox">Recordarme</label>
@@ -140,7 +135,7 @@ export default function Register({ setMode }) {
             </Form>
           )}
         </Formik>
-      }
+      )}
     </>
   );
 }

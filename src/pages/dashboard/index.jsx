@@ -1,32 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAuth } from 'context/authContext';
-import { useState } from 'react'
+import RecipesList from 'components/RecipesList';
 //import { useNavigate } from 'react-router-dom';
-import 'styles/pages/Dashboard.scss'
-import Loading from 'components/Loading'
-
+import styles from 'styles/pages/dashboard/dashboard.module.scss';
 export default function Dashboard() {
-	const { user, logout, data, getAccountData, loadingData, setLoadingData} = useAuth();
+  const { user } = useAuth();
+  console.log(user.photoURL);
 
-	useEffect(() => {
-		getAccountData();
-		return () => setLoadingData(false);
-	},[loadingData]);
-
-	const handleLogout = async() => {
-		await logout();
-		console.log('Cerrando sesion');
-	};
-
-	if(loadingData) return <Loading />;
-
-	return (
-		<div className='dash-container'>
-			<h1>Dashboard</h1>
-			<h2> 
-				Bienvenido {data.nombre}
-			</h2>
-			<button onClick={handleLogout}>Cerrar sesión</button>
-		</div>
-	);
+  return (
+    <section className={styles.dashboard__home}>
+      <RecipesList />
+      <RecipesList />
+      <RecipesList />
+      <RecipesList />
+    </section>
+  );
 }

@@ -1,0 +1,62 @@
+@import "../colors";
+
+.recipe{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 60px;
+  background: #FAFAFA;
+  padding: 0 15px;
+  box-shadow: 0 0 10px 5px rgba($color: #000000, $alpha: 0.1);
+  cursor: pointer;
+  transition:  0.3s ease-in-out;
+
+  img{
+    object-fit: cover;
+  }
+
+  &__name{
+    flex: 1;
+    padding: 0 10px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #323A40 ;
+    transition:  0.3s ease-in-out;
+
+
+  }
+  &:hover{
+    background: $black;
+    color: #FAFAFA;
+    .recipe__name{
+      font-weight: 600;
+      color: white;
+    }
+    .recipe__options{
+      background-color: #1C221F;
+      color: #606060;
+    }
+  }
+ 
+  span:not(.recipe__name){
+    color: #7B8387;
+    font-size: 12px;
+    margin: 0 10px;
+    
+  }
+
+  &__options{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #EAEAEA;
+    vertical-align: middle;
+    transition:  0.3s ease-in-out;
+  }
+  
+}

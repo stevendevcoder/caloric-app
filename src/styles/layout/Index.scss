@@ -1,4 +1,7 @@
 .app__container{
   display: grid;
   grid-template-columns: auto 1fr;
+  overflow: hidden;
+  max-height: 100vh;
+  min-height: 850px;
 }
