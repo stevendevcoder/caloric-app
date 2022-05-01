@@ -1,10 +1,10 @@
-import React, {useEffect} from "react";
-import { useAuth } from "context/authContext";
-import { Navigate, Outlet } from "react-router-dom";
-import Loading from "../components/Loading";
+import React from 'react';
+import { useAuth } from 'context/authContext';
+import { Navigate, Outlet } from 'react-router-dom';
+import Loading from '../components/Loading';
 
 export function ProtectedRoute() {
-  const { user, loading, getAccountData} = useAuth();
+  const { user, loading } = useAuth();
 
   if (loading) {
     console.log(loading);
@@ -12,5 +12,5 @@ export function ProtectedRoute() {
   }
   if (!user) return <Navigate to="/auth"></Navigate>;
 
-  return <Outlet/>
+  return <Outlet />;
 }

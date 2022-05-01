@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import Input from "components/Input";
-import Or from "components/Or";
+import React, { useState } from 'react';
+import Input from 'components/Input';
+import Or from 'components/Or';
 import {
   FacebookLoginButton,
   GoogleLoginButton,
-} from "react-social-login-buttons";
-import { AiOutlineArrowLeft } from "react-icons/ai";
-import PropTypes from "prop-types";
+} from 'react-social-login-buttons';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+import PropTypes from 'prop-types';
 
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "context/authContext";
-import { DASHBOARD } from "constants/route.constants";
-import { Formik, Form } from "formik";
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from 'context/authContext';
+import { DASHBOARD } from 'constants/route.constants';
+import { Formik, Form } from 'formik';
 
 export default function SignIn({ setMode }) {
-  const [errorFirebase, setErrorFirebase] = useState("");
+  const [errorFirebase, setErrorFirebase] = useState('');
   const navigate = useNavigate();
-  const { login, getAccountData } = useAuth();
+  const { login } = useAuth();
 
   const loginUser = async (user) => {
     try {
-      setErrorFirebase("");
+      setErrorFirebase('');
       await login(user.email, user.password);
     } catch (error) {
       setErrorFirebase(error.code);
@@ -30,35 +30,35 @@ export default function SignIn({ setMode }) {
   return (
     <>
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ email: '', password: '' }}
         validate={(values) => {
           const errores = {};
           if (errorFirebase.length > 0) {
             errores.email = errorFirebase;
-            console.log("hola");
+            console.log('hola');
           }
           if (!values.email.length) {
-            errores.email = "Requerido";
+            errores.email = 'Requerido';
           } else if (
             !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
               values.email
             )
           ) {
-            errores.email = "Correo invalido";
+            errores.email = 'Correo invalido';
           }
 
           if (!values.password.length) {
-            errores.password = "Requirido";
+            errores.password = 'Requirido';
           } else if (
             !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,15}$/.test(
               values.password
             )
           ) {
-            errores.password = "Contraseña invalido";
+            errores.password = 'Contraseña invalido';
           }
           return errores;
         }}
-        onSubmit={ async (valores) => {
+        onSubmit={async (valores) => {
           await loginUser(valores);
           navigate(DASHBOARD);
         }}
@@ -88,7 +88,7 @@ export default function SignIn({ setMode }) {
               />
 
               <div className="checkbox">
-                {" "}
+                {' '}
                 <input id="checkbox" type="checkbox" value="Recordarme" />
                 <label htmlFor="checkbox">Recordarme </label>
               </div>
