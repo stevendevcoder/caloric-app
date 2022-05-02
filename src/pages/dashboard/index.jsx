@@ -10,9 +10,7 @@ export default function Dashboard() {
   return (
     <section className={styles.dashboard__home}>
       <RecipesList />
-      <RecipesList />
-      <RecipesList />
-      <RecipesList />
+			
     </section>
   );
 }
