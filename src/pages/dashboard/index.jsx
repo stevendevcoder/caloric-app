@@ -1,16 +1,22 @@
 import React from 'react';
-import { useAuth } from 'context/authContext';
 import RecipesList from 'components/RecipesList';
-//import { useNavigate } from 'react-router-dom';
+import { Requeriments } from './Requeriments';
+import Charts from 'pages/dashboard/Charts';
+
 import styles from 'styles/pages/dashboard/dashboard.module.scss';
+
+import { useAuth } from 'context/authContext';
+
+
 export default function Dashboard() {
   const { user } = useAuth();
   console.log(user.photoURL);
 
   return (
     <section className={styles.dashboard__home}>
+			<Requeriments />
       <RecipesList />
-			
+      <Charts />
     </section>
-  );
+  )
 }

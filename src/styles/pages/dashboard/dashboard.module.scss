@@ -2,8 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  max-height: 100vh;
-  min-height: 100%;
+  min-height: 100vh;
   overflow: auto;
   justify-content: space-evenly;
 }
@@ -11,6 +10,7 @@
 @media (min-width: 950px) {
   .dashboard__home{
     display: grid;
-    grid-template-columns: minmax(300px, 480px) minmax(500px, 1fr);
+    grid-template-columns: minmax(500px, 1fr) minmax(300px, 500px);
+    grid-template-rows: 1fr 1fr;
   }
 }

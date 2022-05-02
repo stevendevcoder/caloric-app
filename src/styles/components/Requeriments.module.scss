@@ -1,0 +1,82 @@
+@import '../colors.scss';
+
+.requeriments {
+  width: 100%;
+  height: 100%;
+  background-color: $black;
+  padding: 40px;
+  text-align: left;
+  color: #fff;
+
+
+  h1 {
+    font-weight: bolder;
+    font-size: 30px;
+    letter-spacing: 2px;
+  }
+
+  p{
+    text-align: left;
+    padding: 0;
+    margin: 10px 0;
+    font-weight: 400;
+  }
+  .macros__container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    height: fit-content;
+    margin-top: 20px;
+    width: 100%;
+
+    div {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      row-gap: 10px;
+      width: 180px;
+      height: 260px;
+      padding: 25px;
+      font-weight: 600;
+  
+      .bar__container {
+        width: 40px;
+        min-height: 40px;
+        font-size: 12px;
+        color: rgb(24, 24, 24);
+        .CircularProgressBar-text {
+          fill: red;
+        }
+      }
+      h2{
+        text-align: center;
+        font-weight: 600;
+        font-size: 20px;
+        letter-spacing: 2px;
+      }
+      p {
+        font-size: 15px;
+        padding: 8px 15px;
+        background-color: $black;
+      }
+    }
+    .requeriments__calories {
+      background-color: $amarillo;
+      box-shadow: 15px 15px 0px 0px #f9d0571a;
+    }
+    .requeriments__protein {
+      background-color: $verde;
+      box-shadow: 15px 15px 0px 0px #1C402C1a;
+    }
+    .requeriments__carbs {
+      background-color: $azul;
+      box-shadow: 15px 15px 0px 0px #4A5FD91a;
+    }
+    .requeriments__fat{
+      background-color: $rojo;
+      box-shadow: 15px 15px 0px 0px #F241301a;
+    }
+  }
+
+}
