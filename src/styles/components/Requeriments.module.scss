@@ -1,6 +1,8 @@
 @import '../colors.scss';
 
 .requeriments {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   background-color: $black;
@@ -11,57 +13,84 @@
 
   h1 {
     font-weight: bolder;
-    font-size: 30px;
+    font-size: 35px;
     letter-spacing: 2px;
+    margin-left: 10px;
   }
 
   p{
+    font-size: 13px;
     text-align: left;
     padding: 0;
     margin: 10px 0;
-    font-weight: 400;
+    font-weight: 500;
+    margin-left: 10px;
+
   }
   .macros__container {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    column-gap: 10px;
+    gap: 40px;
     height: fit-content;
     margin-top: 20px;
     width: 100%;
 
     div {
+      position: relative;
       display: flex;
       align-items: center;
+      justify-content: flex-start;
       flex-direction: column;
-      row-gap: 10px;
-      width: 180px;
-      height: 260px;
-      padding: 25px;
+      width: 210px;
+      max-height: 300px;
+      padding: 30px 25px;
       font-weight: 600;
   
       .bar__container {
-        width: 40px;
-        min-height: 40px;
+        width: 25px;
+        margin-bottom: 20px;
+        min-height: 25px;
         font-size: 12px;
         color: rgb(24, 24, 24);
-        .CircularProgressBar-text {
-          fill: red;
-        }
       }
+
+      .caloricIcon {
+        position: absolute;
+        left: -10px;
+        top: -10px;
+        //transform: translate(-50%, 0);
+        font-size: 55px;
+        padding: 15px;
+        border-radius: 50%;
+        background-color: #151917;
+      }
+
       h2{
         text-align: center;
-        font-weight: 600;
-        font-size: 20px;
+        font-weight: 400;
+        font-size: 22px;
         letter-spacing: 2px;
       }
       p {
+        position: absolute;
+        bottom: 10px;
+        margin: 0 auto;
+        //left: 50%;
+        //transform: translate(-, 0);
         font-size: 15px;
         padding: 8px 15px;
-        background-color: $black;
+        background-color: #15191765;
+        font-weight: 600;
       }
     }
     .requeriments__calories {
+      color: $black;
+      .caloricIcon {
+        background: #fff;
+        color: $black;
+      }
+
       background-color: $amarillo;
       box-shadow: 15px 15px 0px 0px #f9d0571a;
     }
@@ -77,6 +106,33 @@
       background-color: $rojo;
       box-shadow: 15px 15px 0px 0px #F241301a;
     }
-  }
 
+    .requeriments__water {
+      display: flex;
+      flex-grow: 3;
+      width: 100%;
+      padding: 30px;
+      width: 210px;
+      height: auto;
+      max-height: 50px;
+      color: #fff;
+      h2 {
+        text-align: center;
+        font-weight: 400;
+        font-size: 22px;
+        letter-spacing: 2px;
+      }
+      .iconWater {
+        font-size: 55px;
+        padding: 15px;
+        border-radius: 50%;
+      }
+      .iconAdd {
+        font-size: 55px;
+      }
+    }
+  }
+  .vernutrientes {
+    margin-top: 20px;
+  }
 }
