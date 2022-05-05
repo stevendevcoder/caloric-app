@@ -48,5 +48,26 @@ RecipesList.defaultProps = {
       grams: 200,
       calories: 1500,
     },
+    {
+      image:
+        'https://i.ibb.co/kK94qKB/Firefox-Screenshot-2022-04-09-T04-21-45-983-Z.png',
+      name: 'Healthy fruits',
+      grams: 200,
+      calories: 1500,
+    },
+    {
+      image:
+        'https://i.ibb.co/kK94qKB/Firefox-Screenshot-2022-04-09-T04-21-45-983-Z.png',
+      name: 'Healthy fruits',
+      grams: 200,
+      calories: 1500,
+    },
+    {
+      image:
+        'https://i.ibb.co/kK94qKB/Firefox-Screenshot-2022-04-09-T04-21-45-983-Z.png',
+      name: 'Healthy fruits',
+      grams: 200,
+      calories: 1500,
+    },
   ],
 };
