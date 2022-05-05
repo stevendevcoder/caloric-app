@@ -31,12 +31,18 @@ export function Requeriments({ data }){
     }
   }
 
-  const requeriments = useState({
-    calories: calcCalories(),
-    protein: (calcCalories() * 0.20) / 4,
-    carbs: (calcCalories() * 0.50) / 4,
-    fat: (calcCalories() * 0.30) / 9
-  });
+  const requeriments = {
+    calories: Math.trunc(calcCalories()),
+    protein: Math.trunc((calcCalories() * 0.20) / 4),
+    carbs: Math.trunc((calcCalories() * 0.50) / 4),
+    fat: Math.trunc((calcCalories() * 0.30) / 9)
+  };
+  const [today, setToday] = useState({
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0
+  })
 
   console.log(requeriments);
 
@@ -66,34 +72,49 @@ export function Requeriments({ data }){
           <MdLocalFireDepartment className={styles.caloricIcon}/>
           <h2>Calorias</h2>
           <div className='bar__container'>
-          <CircularProgressbar strokeWidth={5} styles={barStyles} value={80} text={`800kcl`}/> 
+          <CircularProgressbar 
+            strokeWidth={5} 
+            styles={barStyles} 
+            value={(today.calories*100)/requeriments.calories} 
+            text={`${requeriments.calories}kcl`}/> 
           </div>
-
-          <p>0/200g</p>
+          <p>{today.calories}/{requeriments.calories}kcl</p>
         </div>
         <div className={styles.requeriments__protein}>
           <GiMeat className={styles.caloricIcon}/>
           <h2>Proteinas</h2>
           <div className="bar__container">
-            <CircularProgressbar strokeWidth={5} styles={barStyles} value={20} text={`80gr`} /> 
+            <CircularProgressbar 
+            strokeWidth={5} 
+            styles={barStyles} 
+            value={(today.protein*100)/requeriments.protein} 
+            text={`${requeriments.protein}g`} /> 
           </div>
-          <p>0/200g</p>
+          <p>{today.protein}/{requeriments.protein}g</p>
         </div>
         <div className={styles.requeriments__carbs}>
           <GiBowlOfRice className={styles.caloricIcon} />
           <h2>Carbos</h2>
           <div className="bar__container">
-            <CircularProgressbar strokeWidth={5} styles={barStyles} value={80} text={`120gr`} /> 
+            <CircularProgressbar 
+            strokeWidth={5} 
+            styles={barStyles} 
+            value={(today.carbs*100)/requeriments.carbs} 
+            text={`${requeriments.carbs}g`} /> 
           </div>
-          <p>0/200g</p>
+          <p>{today.carbs}/{requeriments.carbs}g</p>
         </div>
         <div className={styles.requeriments__fat}>
           <GiAvocado className={styles.caloricIcon}/>
           <h2>Grasas</h2>
           <div className="bar__container">
-            <CircularProgressbar strokeWidth={5} styles={barStyles} value={40} text={`50gr`} /> 
+            <CircularProgressbar 
+            strokeWidth={5} 
+            styles={barStyles} 
+            value={(today.fat*100)/requeriments.fat} 
+            text={`${requeriments.fat}g`} /> 
           </div>
-          <p>0/200g</p>
+          <p>{today.fat}/{requeriments.fat}g</p>
         </div>
         {/*
         <div className={styles.requeriments__water}>
