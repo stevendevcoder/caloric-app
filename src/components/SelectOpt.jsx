@@ -3,14 +3,14 @@ import Select from 'react-select';
 import { useField } from 'formik';
 
 function SelectOpt(props) {
-  const [field, state, { setValue, setTouched }] = useField(props.field.name);
+  const [, , { setValue, setTouched }] = useField(props.field.name);
 
   const onChange = ({ value }) => {
     setValue(value);
   };
 
   const customStyles = {
-    option: (provided, state) => ({
+    option: (provided) => ({
       ...provided,
       padding: '15px',
     }),

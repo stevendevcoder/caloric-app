@@ -1,8 +1,88 @@
-.card{
+@import '../colors';
+
+.card {
   width: auto;
-  height: 1000px;
-  padding: 15px;
+  height: 180px;
+  padding: 20px;
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  background: black;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: 140px 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    'Logo Chart'
+    'Title Chart'
+    'Mg Chart';
+  background: $amarillo;
+  overflow: auto;
+  box-sizing: border-box;
+  text {
+    fill: rgba(255, 255, 255, 0.5);
+    transform: translateY(-10px);
+  }
+
+  &__logo {
+    grid-area: Logo;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #80808034;
+  }
+  &__title {
+    grid-area: Title;
+    text-align: start;
+    font-size: 18px;
+    padding-top: 8px;
+  }
+  &__mg {
+    grid-area: Mg;
+    text-align: start;
+    font-size: 18px;
+  }
+  &__chart {
+    grid-area: Chart;
+    position: relative;
+    display: block;
+    height: 150px;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+    scrollbar-width: thin; /* "auto" or "thin" */
+    scrollbar-color: $rojo $amarillo;
+    color: inherit;
+    box-shadow: 0 0 4px 3px rgba(0, 0, 0, 0.2);
+  }
+  &__chart::-webkit-scrollbar {
+    width: 12px; /* width of the entire scrollbar */
+  }
+
+  &__chart::-webkit-scrollbar-track {
+    background: $rojo; /* color of the tracking area */
+  }
+
+  &__chart::-webkit-scrollbar-thumb {
+    background-color: $amarillo; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+  }
+}
+.card.green {
+  background: $verde;
+  color: $white;
+  .card__chart {
+    scrollbar-color: $white $verde;
+  }
+  .card__chart::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  .card__chart::-webkit-scrollbar-track {
+    background: $verde; /* color of the tracking area */
+  }
+
+  .card__chart::-webkit-scrollbar-thumb {
+    background-color: $white; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+  }
 }
