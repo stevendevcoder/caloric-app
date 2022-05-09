@@ -27,7 +27,7 @@ const CustomTooltip = ({ active, payload }) => {
 
 export default function LineNaturalChart({ data }) {
   return (
-    <ResponsiveContainer width="100%" height="100%" minWidth="500px">
+    <ResponsiveContainer width="100%" height="100%">
       <ComposedChart
         width={200}
         height={300}

@@ -14,7 +14,6 @@ export default function BodyWeigthChart() {
   }
   return (
     <section className={`${styles.bodyWeight} `}>
-      $
       {showAddWeidthForm && (
         <Popup handleClose={handleClose}>
           <AddWeightForm handleSubmit={handleSubmit} />
