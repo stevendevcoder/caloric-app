@@ -36,44 +36,14 @@ export default function BodyWeigthChart() {
 }
 
 export const chartData = [
-  {
-    date: 1652069904137,
-    weight: 90,
-  },
-  {
-    date: 1651983720000,
-    weight: 93,
-  },
-  {
-    date: 1651897320000,
-    weight: 91,
-  },
-  {
-    date: 1651810920000,
-    weight: 88,
-  },
-  {
-    date: 1651724520000,
-    weight: 87,
-  },
-  {
-    date: 1651724520000,
-    weight: 86,
-  },
-  {
-    date: 1651551720000,
-    weight: 87,
-  },
-  {
-    date: 1651465320000,
-    weight: 85,
-  },
-  {
-    date: 1651378920000,
-    weight: 82,
-  },
-  {
-    date: 1651292520000,
-    weight: 80,
-  },
+  { date: 1651292520000, weight: 90 },
+  { date: 1651378920000, weight: 93 },
+  { date: 1651465320000, weight: 91 },
+  { date: 1651551720000, weight: 88 },
+  { date: 1651724520000, weight: 87 },
+  { date: 1651724520000, weight: 86 },
+  { date: 1651810920000, weight: 87 },
+  { date: 1651897320000, weight: 85 },
+  { date: 1651983720000, weight: 82 },
+  { date: 1652069904137, weight: 80 },
 ];
