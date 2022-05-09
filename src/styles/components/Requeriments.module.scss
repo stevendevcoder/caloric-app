@@ -1,15 +1,15 @@
 @import '../colors.scss';
 
 .requeriments {
+  grid-column: 1/3;
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: fit-content;
   background-color: $black;
   padding: 40px;
   text-align: left;
   color: #fff;
-
 
   h1 {
     font-weight: bolder;
@@ -18,14 +18,13 @@
     margin-left: 10px;
   }
 
-  p{
+  p {
     font-size: 13px;
     text-align: left;
     padding: 0;
     margin: 10px 0;
     font-weight: 500;
     margin-left: 10px;
-
   }
   .macros__container {
     display: flex;
@@ -46,7 +45,7 @@
       max-height: 300px;
       padding: 30px 25px;
       font-weight: 600;
-  
+
       .bar__container {
         width: 25px;
         margin-bottom: 20px;
@@ -66,7 +65,7 @@
         background-color: #151917;
       }
 
-      h2{
+      h2 {
         text-align: center;
         font-weight: 400;
         font-size: 22px;
@@ -96,15 +95,15 @@
     }
     .requeriments__protein {
       background-color: $verde;
-      box-shadow: 15px 15px 0px 0px #1C402C1a;
+      box-shadow: 15px 15px 0px 0px #1c402c1a;
     }
     .requeriments__carbs {
       background-color: $azul;
-      box-shadow: 15px 15px 0px 0px #4A5FD91a;
+      box-shadow: 15px 15px 0px 0px #4a5fd91a;
     }
-    .requeriments__fat{
+    .requeriments__fat {
       background-color: $rojo;
-      box-shadow: 15px 15px 0px 0px #F241301a;
+      box-shadow: 15px 15px 0px 0px #f241301a;
     }
 
     .requeriments__water {

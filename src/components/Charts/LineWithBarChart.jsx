@@ -2,12 +2,11 @@ import React from 'react';
 import {
   ComposedChart,
   Line,
+  Bar,
   Tooltip,
   ResponsiveContainer,
-  CartesianGrid,
-  ReferenceLine,
 } from 'recharts';
-export default function LinearChart({ data, chartColor }) {
+export default function LineWithBarChart({ data, chartColor }) {
   return (
     <ResponsiveContainer width="100%" height="100%" minWidth="500px">
       <ComposedChart
@@ -21,30 +20,17 @@ export default function LinearChart({ data, chartColor }) {
           left: 20,
         }}
       >
-        <CartesianGrid
-          stroke="#ffffff80"
-          horizontal={false}
-          yAxis={50}
-          viewBox={true}
-        />
         <Tooltip
           itemStyle={{ display: 'flex' }}
-          contentStyle={{ background: '#1C402C' }}
+          contentStyle={{ background: '#ffffff7s0' }}
         />
-        <ReferenceLine
-          y={1600}
-          label="1800mg"
-          alwaysShow={false}
-          stroke="#ffffff80"
-          strokeDasharray="3 3"
-        />
+        <Bar dataKey="uv" legendType="wye" barSize={2} fill={chartColor} />
         <Line
-          type="linear"
+          type="natural"
           dataKey="uv"
           strokeWidth={2}
-          dot={{ r: 4, fill: '#1C402C' }}
-          activeDot={{ r: 6 }}
-          stroke={chartColor}
+          dot={false}
+          stroke="#1C402C"
         />
       </ComposedChart>
     </ResponsiveContainer>
