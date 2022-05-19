@@ -1,7 +1,7 @@
+import LinearChart from 'components/Charts/LinearChart';
+import LineWithBarChart from 'components/Charts/LineWithBarChart';
 import React from 'react';
 import styles from 'styles/components/CardTracker.module.scss';
-import LinearChart from './LinearChart';
-import NaturalChart from './NaturalChart';
 
 export default function CardTracker({
   icon,
@@ -18,9 +18,9 @@ export default function CardTracker({
       <span className={styles.card__mg}>{littleDescription}</span>
       <div className={styles.card__chart}>
         {chartType === 'linear' ? (
-          <LinearChart chartColor={chartColor} data={data} />
+          <LinearChart chartColor={chartColor} data={chartData} />
         ) : (
-          <NaturalChart data={data} chartColor={chartColor} />
+          <LineWithBarChart data={chartData} chartColor={chartColor} />
         )}
       </div>
     </div>
@@ -29,7 +29,7 @@ export default function CardTracker({
 CardTracker.defaultProps = {
   variant: '',
 };
-const data = [
+export const chartData = [
   {
     name: 'Page A',
     uv: 590,

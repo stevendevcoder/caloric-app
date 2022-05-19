@@ -1,6 +1,6 @@
-@import "./_colors";
-@import "./_fonts";
-@import "mixins";
+@import './_colors';
+@import './_fonts';
+@import 'mixins';
 body {
   margin: 0;
   font-family: $font-family;
@@ -21,4 +21,9 @@ h1 {
 }
 h2 {
   @include h2-fonts;
+}
+
+.dashboard__title {
+  font-size: 22px;
+  font-weight: 500;
 }

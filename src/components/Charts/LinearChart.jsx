@@ -2,11 +2,12 @@ import React from 'react';
 import {
   ComposedChart,
   Line,
-  Bar,
   Tooltip,
   ResponsiveContainer,
+  CartesianGrid,
+  ReferenceLine,
 } from 'recharts';
-export default function NaturalChart({ data, chartColor }) {
+export default function LinearChart({ data, chartColor }) {
   return (
     <ResponsiveContainer width="100%" height="100%" minWidth="500px">
       <ComposedChart
@@ -20,17 +21,30 @@ export default function NaturalChart({ data, chartColor }) {
           left: 20,
         }}
       >
+        <CartesianGrid
+          stroke="#ffffff80"
+          horizontal={false}
+          yAxis={50}
+          viewBox={true}
+        />
         <Tooltip
           itemStyle={{ display: 'flex' }}
-          contentStyle={{ background: '#ffffff7s0' }}
+          contentStyle={{ background: '#1C402C' }}
         />
-        <Bar dataKey="uv" legendType="wye" barSize={2} fill={chartColor} />
+        <ReferenceLine
+          y={1600}
+          label="1800mg"
+          stroke="#ffffff80"
+          strokeDasharray="3 3"
+          ifOverflow="extendDomain"
+        />
         <Line
-          type="natural"
+          type="linear"
           dataKey="uv"
           strokeWidth={2}
-          dot={false}
-          stroke="#1C402C"
+          dot={{ r: 4, fill: '#1C402C' }}
+          activeDot={{ r: 6 }}
+          stroke={chartColor}
         />
       </ComposedChart>
     </ResponsiveContainer>
