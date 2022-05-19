@@ -1,24 +1,38 @@
-@import "../mixins";
-.recipes{
+@import '../mixins';
+.recipes {
   display: grid;
   row-gap: 20px;
   min-width: 400px;
+  width: 100%;
   height: fit-content;
-  padding: 30px;
-  overflow: hidden;
+  padding: 30px 60px;
 
-  &__header{
+  &__header {
     display: flex;
     justify-content: space-between;
   }
-  
-  &__list{
+
+  &__addNewFood {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 20px auto;
+    background-color: darkgreen;
+    cursor: pointer;
+  }
+
+  &__list {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
     max-height: 250px;
+
+    overflow: auto;
   }
-  .show__all{
+  .show__all {
     @include show-all-btn;
   }
 }

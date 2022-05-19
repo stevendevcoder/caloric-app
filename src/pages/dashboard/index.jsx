@@ -6,7 +6,7 @@ import Charts from 'pages/dashboard/Charts';
 import styles from 'styles/pages/dashboard/dashboard.module.scss';
 
 import { useAuth } from 'context/authContext';
-
+import TrackerSection from 'components/TrackerSection';
 
 export default function Dashboard() {
   const { user, data, getAccountData, loadingData} = useAuth();
@@ -24,7 +24,7 @@ export default function Dashboard() {
     <section className={styles.dashboard__home}>
 			<Requeriments data={data}/> 
       <RecipesList />
-      <Charts />
+      <TrackerSection />
     </section>
-  )
+  );
 }
