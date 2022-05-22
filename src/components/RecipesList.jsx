@@ -1,17 +1,44 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import styles from 'styles/components/RecipesList.module.scss';
 import { RecipeCard } from './RecipeCard';
+import Popup from './Popup';
+import SearchFood from './forms/SearchFood';
+import AddWeightForm from './forms/AddWeightForm';
 import PropTypes from 'prop-types';
+
+import { GrAdd } from 'react-icons/gr';
+
 export default function RecipesList({ recipesList }) {
+  const [addFood, setAddFood] = useState(false);
+
+  const handleClose = () => setAddFood(!addFood);
+
+  console.log(addFood)
+
+  const addNewFood = () => {
+    
+  }
+
   return (
     <section className={`${styles.recipes} `}>
+      {addFood && (
+        <Popup handleClose={handleClose}>
+          <SearchFood />
+        </Popup>
+      )}
       <header className={styles.recipes__header}>
         <span className="dashboard__title">Recipes</span>
         <Link to="dashboard/recipes-all" className={styles.show__all}>
           Show All
         </Link>
       </header>
+      <div 
+        className={styles.recipes__addNewFood}
+        onClick={() => setAddFood(true)}>
+        
+        <GrAdd style={{color: 'white', fontSize: '30px'}}/>
+      </div>
       <div className={styles.recipes__list}>
         {recipesList.map((recipe, key) => (
           <RecipeCard {...recipe} key={key} />

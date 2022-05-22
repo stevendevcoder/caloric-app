@@ -5,11 +5,23 @@
   min-width: 400px;
   width: 100%;
   height: fit-content;
-  padding: 30px;
+  padding: 30px 60px;
 
   &__header {
     display: flex;
     justify-content: space-between;
+  }
+
+  &__addNewFood {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 20px auto;
+    background-color: darkgreen;
+    cursor: pointer;
   }
 
   &__list {

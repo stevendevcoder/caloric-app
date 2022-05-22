@@ -3,17 +3,13 @@ import React, { useState } from 'react';
 import styles from 'styles/components/Requeriments.module.scss';
 import 'react-circular-progressbar/dist/styles.css';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { Progress } from 'react-sweet-progress';
+import "react-sweet-progress/lib/style.css";
 
 import { MdLocalFireDepartment } from 'react-icons/md';
 import { GiMeat, GiAvocado, GiBowlOfRice } from 'react-icons/gi';
-
-/*
-    MUJERES
-    [655 + (9,6 × peso en kg) ] + [ (1,8 × altura en cm) – (4,7 × edad)] × Factor actividad.
-
-    HOMBRES 
-    [66 + (13,7 × peso en kg) ] + [ (5 × altura en cm) – (6,8 × edad)] × Factor actividad.
-*/
+import { IoIosWater } from 'react-icons/io'
+import { GrAdd } from 'react-icons/gr'
 
 export function Requeriments({ data }) {
   const calcCalories = () => {
@@ -41,101 +37,102 @@ export function Requeriments({ data }) {
     }
   };
 
-  const requeriments = useState({
-    calories: calcCalories(),
-    protein: (calcCalories() * 0.2) / 4,
-    carbs: (calcCalories() * 0.5) / 4,
-    fat: (calcCalories() * 0.3) / 9,
-  });
-
-  console.log(requeriments);
+  const requeriments = {
+    calories: Math.trunc(calcCalories()),
+    protein: Math.trunc((calcCalories() * 0.20) / 4),
+    carbs: Math.trunc((calcCalories() * 0.50) / 4),
+    fat: Math.trunc((calcCalories() * 0.30) / 9)
+  };
+  const [today, setToday] = useState({
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0
+  })
 
   const barStyles = buildStyles({
     textSize: '18px',
     pathTransitionDuration: 0.7,
     textColor: '#151917',
     trailColor: '#FFF',
-
     pathColor:
       'linear-gradient(to right top, #f24130, #f7632b, #f97f2b, #fa9931, #fab13e, #fea848, #ff9f53, #ff975d, #ff7075, #ed549a, #b852c0, #4a5fd9)',
     background:
-      'linear-gradient(to right top, #f24130, #f7632b, #f97f2b, #fa9931, #fab13e, #fea848, #ff9f53, #ff975d, #ff7075, #ed549a, #b852c0, #4a5fd9);',
+      'linear-gradient(to right top, #f24130, #oif7632b, #f97f2b, #fa9931, #fab13e, #fea848, #ff9f53, #ff975d, #ff7075, #ed549a, #b852c0, #4a5fd9);',
   });
-
-  // const iconStyles = {
-  //   fontSize: '50px',
-  //   padding: '10px',
-  //   borderRadius: '50%',
-  //   backgroundColor: '#15191765',
-  // };
 
   return (
     <section className={styles.requeriments}>
-      <h1>Requerimientos Diarios</h1>
-      <p>Estos son los macros diarios necesarios para lograr tu objetivo</p>
+      <div className={styles.title}>
+        <div>
+          <h1>Requerimientos Diarios</h1>
+          <p>Estos son los macros diarios necesarios para lograr tu objetivo</p>
+        </div>
+        <a className={styles.vernutrientes}>Ver nutrientes</a>
+      </div>
       <div className={styles.macros__container}>
         <div className={styles.requeriments__calories}>
           <MdLocalFireDepartment className={styles.caloricIcon} />
           <h2>Calorias</h2>
-          <div className="bar__container">
-            <CircularProgressbar
-              strokeWidth={5}
-              styles={barStyles}
-              value={80}
-              text={`800kcl`}
-            />
+          <div className='bar__container'>
+            <CircularProgressbar 
+              strokeWidth={5} 
+              styles={barStyles} 
+              value={(today.calories*100)/requeriments.calories} 
+            text={`${requeriments.calories}kcl`}/> 
           </div>
-
-          <p>0/200g</p>
+          <p>{today.calories}/{requeriments.calories}kcl</p>
         </div>
         <div className={styles.requeriments__protein}>
           <GiMeat className={styles.caloricIcon} />
           <h2>Proteinas</h2>
           <div className="bar__container">
-            <CircularProgressbar
-              strokeWidth={5}
-              styles={barStyles}
-              value={20}
-              text={`80gr`}
-            />
+            <CircularProgressbar 
+              strokeWidth={5} 
+              styles={barStyles} 
+              value={(today.protein*100)/requeriments.protein} 
+              text={`${requeriments.protein}g`} /> 
           </div>
-          <p>0/200g</p>
+          <p>{today.protein}/{requeriments.protein}g</p>
         </div>
         <div className={styles.requeriments__carbs}>
           <GiBowlOfRice className={styles.caloricIcon} />
           <h2>Carbos</h2>
           <div className="bar__container">
-            <CircularProgressbar
-              strokeWidth={5}
-              styles={barStyles}
-              value={80}
-              text={`120gr`}
-            />
+            <CircularProgressbar 
+            strokeWidth={5} 
+            styles={barStyles} 
+            value={(today.carbs*100)/requeriments.carbs} 
+            text={`${requeriments.carbs}g`} /> 
           </div>
-          <p>0/200g</p>
+          <p>{today.carbs}g /{requeriments.carbs}g</p>
         </div>
         <div className={styles.requeriments__fat}>
           <GiAvocado className={styles.caloricIcon} />
           <h2>Grasas</h2>
           <div className="bar__container">
-            <CircularProgressbar
-              strokeWidth={5}
-              styles={barStyles}
-              value={40}
-              text={`50gr`}
-            />
+            <CircularProgressbar 
+            strokeWidth={5} 
+            styles={barStyles} 
+            value={(today.fat*100)/requeriments.fat} 
+            text={`${requeriments.fat}g`} /> 
           </div>
-          <p>0/200g</p>
+          <p>{today.fat}g / {requeriments.fat}g</p>
         </div>
-        {/*
-        <div className={styles.requeriments__water}>
-          <h2>Consumo de agua</h2>
-          <IoIosWater className={styles.iconWater}/>
-          <GrAdd className={styles.iconAdd}/>
-        </div>*/}
       </div>
 
-      <button className="vernutrientes">Ver nutrientes</button>
+      <div className={styles.requeriments__water}>
+        <IoIosWater className={styles.iconWater}/>
+        <h2>Consumo de agua</h2>
+        <Progress 
+          percent={68} 
+          style={{color: '#0957ff', textColor: '#fff'}}  
+        />
+        <p>{today.calories}/{requeriments.calories}L</p>
+        <div className={styles.options}>
+          <GrAdd className={styles.iconAdd}/>
+        </div>
+      </div>
     </section>
   );
 }

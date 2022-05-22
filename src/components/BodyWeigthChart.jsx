@@ -3,6 +3,7 @@ import styles from 'styles/components/BodyWeigthChart.module.scss';
 import LineNaturalChart from './Charts/LineNaturalChart';
 import AddWeightForm from './forms/AddWeightForm';
 import Popup from './Popup';
+
 export default function BodyWeigthChart() {
   const [showAddWeidthForm, setShowAddWeidthForm] = useState();
   function handleClose() {

@@ -44,8 +44,9 @@ export function AuthProvider({ children }) {
       try {
         const q = await getDoc(doc(db, 'users', user.uid));
         const response = q.data();
-        setData(response);
+        setData({...response});
         console.log('Obteniendo datos:', response);
+        setLoadingData(false);
       } catch (error) {
         console.log('Error getDoc: ', error);
       }
