@@ -4,7 +4,6 @@ import styles from 'styles/components/RecipesList.module.scss';
 import { RecipeCard } from './RecipeCard';
 import Popup from './Popup';
 import SearchFood from './forms/SearchFood';
-import AddWeightForm from './forms/AddWeightForm';
 import PropTypes from 'prop-types';
 
 import { GrAdd } from 'react-icons/gr';
@@ -14,14 +13,10 @@ export default function RecipesList({ recipesList }) {
 
   const handleClose = () => setAddFood(!addFood);
 
-  console.log(addFood)
-
-  const addNewFood = () => {
-    
-  }
+  console.log(addFood);
 
   return (
-    <section className={`${styles.recipes} `}>
+    <section className={`${styles.recipes}`}>
       {addFood && (
         <Popup handleClose={handleClose}>
           <SearchFood />

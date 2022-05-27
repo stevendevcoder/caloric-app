@@ -4,7 +4,7 @@ import styles from 'styles/components/Requeriments.module.scss';
 import 'react-circular-progressbar/dist/styles.css';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { Progress } from 'react-sweet-progress';
-import "react-sweet-progress/lib/style.css";
+import 'react-sweet-progress/lib/style.css';
 
 import { MdLocalFireDepartment } from 'react-icons/md';
 import { GiMeat, GiAvocado, GiBowlOfRice } from 'react-icons/gi';
@@ -36,19 +36,18 @@ export function Requeriments({ data }) {
       );
     }
   };
-
   const requeriments = {
     calories: Math.trunc(calcCalories()),
     protein: Math.trunc((calcCalories() * 0.20) / 4),
     carbs: Math.trunc((calcCalories() * 0.50) / 4),
     fat: Math.trunc((calcCalories() * 0.30) / 9)
   };
-  const [today, setToday] = useState({
+  const today = {
     calories: 0,
     protein: 0,
     carbs: 0,
     fat: 0
-  })
+  };
 
   const barStyles = buildStyles({
     textSize: '18px',
