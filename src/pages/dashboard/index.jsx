@@ -7,12 +7,12 @@ import { useAuth } from 'context/authContext';
 import TrackerSection from 'components/TrackerSection';
 import BodyWeigthChart from 'components/BodyWeigthChart';
 export default function Dashboard() {
-  const { user, data, getAccountData, loadingData} = useAuth();
+  const { data, getAccountData, loadingData} = useAuth();
 
   useEffect(()=> {
     const unsub = getAccountData();
     return () => unsub;
-  }, [])
+  }, []);
 
   console.log("DATA: ", data);
 

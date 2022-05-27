@@ -24,6 +24,7 @@
         "react-dom": "^18.0.0",
         "react-gradient-progress": "^1.0.3",
         "react-icons": "^4.3.1",
+        "react-loading": "^2.0.3",
         "react-router-dom": "^6.3.0",
         "react-scripts": "5.0.0",
         "react-select": "^5.3.0",

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from 'styles/components/Popup.module.scss';
-import { AiOutlineClose} from 'react-icons/ai'
+import { AiOutlineClose} from 'react-icons/ai';
 
 export default function Popup({ children, handleClose }) {
   return (

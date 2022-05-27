@@ -1,13 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types';
+import React from 'react';
 import { GrAdd } from 'react-icons/gr';
 
-function FoodResult({description, foodNutrients, brandOwner, servingSize, servingSizeUnit}) {
+function FoodResult({description, foodNutrients, brandOwner}) {
   const calories = foodNutrients[3].value;
   const protein = foodNutrients[0].value;
   const fat = foodNutrients[1].value;
   const carbs = foodNutrients[2].value;
-
   return (
     <div className="result__card">
       <div className="description">
@@ -27,9 +25,8 @@ function FoodResult({description, foodNutrients, brandOwner, servingSize, servin
         <GrAdd className="add"/>
       </div>
     </div>
-  )
+  );
 }
-
 FoodResult.defaultProps = {
   description: 'Hamburguesa',
   foodNutrients: [
@@ -39,7 +36,5 @@ FoodResult.defaultProps = {
     {value: 145}
   ],
   brandOwner: 'MacDonalds'
-}
-
-
-export default FoodResult
+};
+export default FoodResult;
