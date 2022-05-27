@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from 'styles/components/RecipesList.module.scss';
 import { RecipeCard } from './RecipeCard';

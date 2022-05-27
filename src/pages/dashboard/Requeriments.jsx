@@ -1,3 +1,4 @@
+/* eslint-disable-next-line no-unused-vars */
 import React, { useState } from 'react';
 
 import styles from 'styles/components/Requeriments.module.scss';
@@ -8,8 +9,8 @@ import 'react-sweet-progress/lib/style.css';
 
 import { MdLocalFireDepartment } from 'react-icons/md';
 import { GiMeat, GiAvocado, GiBowlOfRice } from 'react-icons/gi';
-import { IoIosWater } from 'react-icons/io'
-import { GrAdd } from 'react-icons/gr'
+import { IoIosWater } from 'react-icons/io';
+import { GrAdd } from 'react-icons/gr';
 
 export function Requeriments({ data }) {
   const calcCalories = () => {
