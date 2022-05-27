@@ -5,7 +5,6 @@ import { ProtectedRoute } from '../components/ProtectedRoute';
 
 import Login from 'pages/auth/Login';
 import Layout from 'Layout';
-import Requerimientos from '../pages/Home/Requerimientos';
 import Comidas from '../pages/Home/Comidas';
 import Macronutrientes from '../pages/Home/Macronutrientes';
 import Menu from '../pages/Home/Menu';
@@ -23,7 +22,6 @@ import {
   HOME,
   HOME_FOOD,
   HOME_MACRO,
-  HOME_REQUERIMENTS,
   HOME_SETTINGS,
 } from 'constants/route.constants';
 import Dashboard from 'pages/dashboard';
@@ -34,7 +32,6 @@ function App() {
       <Routes>
         <Route element={<ProtectedRoute />}>
           <Route element={<Menu />} path={HOME} />
-          <Route element={<Requerimientos />} path={HOME_REQUERIMENTS} />
           <Route element={<Comidas />} path={HOME_FOOD} />
           <Route element={<Macronutrientes />} path={HOME_MACRO} />
           <Route element={<Settings />} path={HOME_SETTINGS} />
