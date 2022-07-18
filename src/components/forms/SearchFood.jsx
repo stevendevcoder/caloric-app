@@ -30,23 +30,29 @@ export default function SearchFood(){
       alert(error);
     }
   };
-  const handleChange = () => getFoodData(term);
+  const handleChange = (e) => {
+    e.preventDefault();
+    getFoodData(term);
+  };
 
   return (
     <div className="form-container">
       <h2>Buscar Alimento</h2>
-      <div className="searcher">
+      <form onSubmit={handleChange} className="searcher">
         <input 
           type='text' 
           value={term}
           placeholder='Buscar alimento por palabras clave' 
-          onChange={(e) => setTerm(e.target.value)}
+          onChange={(e) => {
+            setTerm(e.target.value);
+            handleChange();
+          }}
           />
         <BsSearch onClick={handleChange} className='search-icon'/>
-      </div>
+      </form>
       <div className="results">
         {
-          foodsResults.length ? 
+          foodsResults.length && term ? 
             foodsResults.map(food => 
               <FoodResult key={food.fdcId} {...food}/>
             ) 

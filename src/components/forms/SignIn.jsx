@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
 import Input from 'components/Input';
-import Or from 'components/Or';
-import {
-  FacebookLoginButton,
-  GoogleLoginButton,
-} from 'react-social-login-buttons';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import PropTypes from 'prop-types';
 
@@ -86,19 +81,7 @@ export default function SignIn({ setMode }) {
                 errors={errors.password}
                 touched={touched.password}
               />
-
-              <div className="checkbox">
-                {' '}
-                <input id="checkbox" type="checkbox" value="Recordarme" />
-                <label htmlFor="checkbox">Recordarme </label>
-              </div>
               <button type="submit">Continuar</button>
-
-              <Or></Or>
-              <div className="login-or-register">
-                <FacebookLoginButton type="submit" />
-                <GoogleLoginButton />
-              </div>
             </div>
           </Form>
         )}

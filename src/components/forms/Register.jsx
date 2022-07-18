@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import Or from 'components/Or';
 import Input from '../Input';
-import {
-  FacebookLoginButton,
-  GoogleLoginButton,
-} from 'react-social-login-buttons';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { TiDelete } from 'react-icons/ti';
 
@@ -121,16 +116,7 @@ export default function Register({ setMode }) {
                     {errorFirebase}
                   </div>
                 )}
-                <div className="checkbox">
-                  <input id="checkbox" type="checkbox" value="Recordarme" />
-                  <label htmlFor="checkbox">Recordarme</label>
-                </div>
                 <button type="submit">Crear cuenta</button>
-                <Or></Or>
-                <div className="login-or-register">
-                  <FacebookLoginButton type="submit" />
-                  <GoogleLoginButton />
-                </div>
               </div>
             </Form>
           )}

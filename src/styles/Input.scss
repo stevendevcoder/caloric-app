@@ -1,29 +1,32 @@
 
 label{
-  display: block;
+  margin: block;
   text-transform:capitalize;
   margin: 1em;
 }
 
 label > .error{
-  border-color: rgba(255, 0, 0, 0.485);
+  border-color: rgb(160, 2, 36);
+}
+label > .correcto{
+  border-color: #1C4430;
+}
+span {
+  font-size: 18px;
+  font-weight: 250;
 }
 
-p {
-  margin: 2em;
-  text-align: center;
-}
 .input{
   position: relative;
-  width: 100%;
-  max-height: 64px;
-  padding: 8px 17px 8px 17px;
   display:flex;
   align-items: center;
+  width: 100%;
+  max-height: 64px;
+
+  padding: 12px 20px 12px 20px;
   background-color: #ffffff;
-  border-radius: 6px;
   border: .5px solid #8692A6;
-  margin: 1.2em 0;
+  margin: 10px 0;
  
   input{
     width: 100%;
@@ -31,16 +34,38 @@ p {
     padding: 0px;
     border: none;
     outline: none;
-    font-size: 15px;
-    font-weight: bolder;
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .delete {
+    max-width: 25px;
+    font-size: 25px;
+    color: rgb(160, 2, 36);
+    cursor: pointer;
+  }
+  .check {
+    max-width: 25px;
+    font-size: 25px;
+    color: rgb(2, 160, 10);
   }
   .icon-password {
-    max-width: 20px;
-    font-size: 20px;
+    position: absolute;
+    cursor: pointer;
+    right: -10px;
+    top: -10px;
+    max-width: 25px;
+    font-size: 25px;
+    padding: 3px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: .5px solid black;
     color: black;
     &:hover {
-      cursor: pointer;
-    }
+      background-color: black;
+      color: #fff;
+    } 
+
   }
   .msgError {
     position:absolute;

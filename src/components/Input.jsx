@@ -9,10 +9,12 @@ import { Field } from 'formik';
 
 export default function Input({ name, errors, label, touched }) {
   const [showPassword, setShowPassword] = useState(false);
-  const color = errors.length ? 'error' : '';
+  const color = errors.length ? 'error' : 'correcto';
   return (
     <label>
-      {label}
+      <span>
+        {label}:
+      </span>
       <div className={`input ${color}`}>
         <Field
           name={name}
@@ -21,8 +23,14 @@ export default function Input({ name, errors, label, touched }) {
             name === 'password' ? (showPassword ? 'text' : 'password') : 'text'
           }
         />
-        <TiDelete className="delete"></TiDelete>
-        <AiOutlineCheckCircle className="check"></AiOutlineCheckCircle>
+
+        {touched && !errors && 
+          <AiOutlineCheckCircle className="check"></AiOutlineCheckCircle>
+        }
+
+        {touched && errors &&
+          <TiDelete className="delete"></TiDelete>
+        }
 
         {name === 'password' &&
           (showPassword ? (

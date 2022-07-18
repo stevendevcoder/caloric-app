@@ -7,7 +7,7 @@ export default function Login() {
   const [mode, setMode] = useState(false);
 
   return (
-    <div className="container">
+    <div className={`container ${mode ? 'sign' : 'register'}`}>
       <div className={`image-login ${mode ? "avocado" : "running"}`}></div>
 
       {mode ? <SignIn setMode={setMode} /> : <Register setMode={setMode} />}
